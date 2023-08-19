@@ -1,0 +1,2 @@
+#test transformations_1
+  ck_assert_double_eq_tol(res_orig, res, 1e-07);
