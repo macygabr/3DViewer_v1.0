@@ -39,10 +39,10 @@ dvi:
 clean:
 	rm -rf *.a report gcov tests/calc_test.c test *.gcno *.gcda
 
-calc.a:
-	$(CC) $(CFLAGS) -c *.c 
-	ar rcs calc.a $(FILES:.c=.o)
-	ranlib calc.a
+transformations.a:
+	$(CC) $(CFLAGS) -c back/*.c 
+	ar rcs transformations.a $(FILES:.c=.o)
+	ranlib transformations.a
 	rm *.o
 
 gcov_report: clean check
@@ -62,6 +62,10 @@ check:
 
 test: calc.a check
 	$(CC) -std=c11  tests/calc_test.c calc.a -o test $(TEST_FLAGS)
+	./test
+
+mytest: clean transformations.a
+	$(CC) -std=c11  back/tests/test.c transformations.a -o test $(TEST_FLAGS)
 	./test
 
 valgrind: clean check calc.a test
