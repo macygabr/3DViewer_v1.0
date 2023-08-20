@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-//#include "glview.h"
-
+#include "draw.h"
+//cloned from repo
 extern "C" {
 #include "gif.h"
 }

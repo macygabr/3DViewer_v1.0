@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "glview.h"
+#include "draw.h"
 #include <QFileDialog>
 
 

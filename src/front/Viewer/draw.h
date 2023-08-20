@@ -2,6 +2,10 @@
 #define DRAW_H
 
 #include <QOpenGLWidget>
+#include <QtOpenGL>
+#include <QtOpenGLWidgets/QtOpenGLWidgets>
+#include <QOpenGLFunctions>
+
 
 class draw:public QOpenGLWidget
 {
