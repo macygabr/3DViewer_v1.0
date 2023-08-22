@@ -11,12 +11,14 @@ CONFIG += c++17
 SOURCES += \
     draw.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mainwindowstate.cpp
 
 HEADERS += \
     draw.h \
     gif.h \
-    mainwindow.h
+    mainwindow.h \
+    mainwindowstate.h
 
 FORMS += \
     mainwindow.ui

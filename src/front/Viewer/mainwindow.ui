@@ -629,7 +629,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>280</y>
+      <y>270</y>
       <width>99</width>
       <height>20</height>
      </rect>
@@ -658,7 +658,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>920</x>
-      <y>280</y>
+      <y>270</y>
       <width>99</width>
       <height>20</height>
      </rect>
@@ -683,16 +683,16 @@ QPushButton:pressed {
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>730</x>
       <y>250</y>
-      <width>111</width>
-      <height>20</height>
+      <width>301</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">
     border-radius:  10px;
-	background-color: rgb(228, 225, 230);
+	background-color: rgb(220, 217, 222);
 
     color:  rgb(0, 0, 0);
     font-size:  33px;
@@ -702,20 +702,23 @@ QPushButton:pressed {
     <property name="text">
      <string>Type of projection</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>310</y>
-      <width>111</width>
-      <height>20</height>
+      <x>730</x>
+      <y>300</y>
+      <width>301</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">
     border-radius:  10px;
-	background-color: rgb(228, 225, 230);
+	background-color: rgb(220, 217, 222);
 
     color:  rgb(0, 0, 0);
     font-size:  33px;
@@ -733,7 +736,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>730</x>
-      <y>340</y>
+      <y>330</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -760,7 +763,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>910</x>
-      <y>340</y>
+      <y>330</y>
       <width>99</width>
       <height>20</height>
      </rect>
@@ -786,7 +789,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>830</x>
-      <y>340</y>
+      <y>330</y>
       <width>99</width>
       <height>20</height>
      </rect>
@@ -811,38 +814,11 @@ QPushButton:pressed {
      <string notr="true">buttonGroup_2</string>
     </attribute>
    </widget>
-   <widget class="QLabel" name="x_spin_is_3">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>370</y>
-      <width>71</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-    border-radius:  10px;
-	background-color: rgb(228, 225, 230);
-
-    color:  rgb(87, 87, 87);
-    font-size:  33px;
-	font: 13pt &quot;Comic Sans MS&quot;;
-
-</string>
-    </property>
-    <property name="text">
-     <string>Colour:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="x_spin_is_4">
     <property name="geometry">
      <rect>
       <x>730</x>
-      <y>400</y>
+      <y>360</y>
       <width>71</width>
       <height>21</height>
      </rect>
@@ -869,7 +845,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>820</x>
-      <y>400</y>
+      <y>360</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -898,7 +874,7 @@ QPushButton:pressed {
    <widget class="QRadioButton" name="is_round">
     <property name="geometry">
      <rect>
-      <x>820</x>
+      <x>810</x>
       <y>470</y>
       <width>99</width>
       <height>20</height>
@@ -924,38 +900,11 @@ QPushButton:pressed {
      <string notr="true">buttonGroup_3</string>
     </attribute>
    </widget>
-   <widget class="QLabel" name="x_spin_is_5">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>500</y>
-      <width>71</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-    border-radius:  10px;
-	background-color: rgb(228, 225, 230);
-
-    color:  rgb(87, 87, 87);
-    font-size:  33px;
-	font: 13pt &quot;Comic Sans MS&quot;;
-
-</string>
-    </property>
-    <property name="text">
-     <string>Colour:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="x_spin_is_6">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>530</y>
+      <x>720</x>
+      <y>500</y>
       <width>71</width>
       <height>21</height>
      </rect>
@@ -1007,8 +956,8 @@ QPushButton:pressed {
    <widget class="QSlider" name="size">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>530</y>
+      <x>810</x>
+      <y>500</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -1037,16 +986,16 @@ QPushButton:pressed {
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>730</x>
       <y>440</y>
-      <width>111</width>
-      <height>20</height>
+      <width>301</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">
     border-radius:  10px;
-	background-color: rgb(228, 225, 230);
+	background-color: rgb(220, 217, 222);
 
     color:  rgb(0, 0, 0);
     font-size:  33px;
@@ -1063,7 +1012,7 @@ QPushButton:pressed {
    <widget class="QLabel" name="x_spin_is_7">
     <property name="geometry">
      <rect>
-      <x>730</x>
+      <x>720</x>
       <y>470</y>
       <width>71</width>
       <height>16</height>
@@ -1116,16 +1065,16 @@ QPushButton:pressed {
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>570</y>
-      <width>111</width>
-      <height>20</height>
+      <x>730</x>
+      <y>580</y>
+      <width>301</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">
     border-radius:  10px;
-	background-color: rgb(228, 225, 230);
+	background-color: rgb(220, 217, 222);
 
     color:  rgb(0, 0, 0);
     font-size:  33px;
@@ -1139,31 +1088,85 @@ QPushButton:pressed {
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="x_spin_is_8">
+   <widget class="QPushButton" name="Edges_colour">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>610</y>
-      <width>71</width>
-      <height>16</height>
+      <x>750</x>
+      <y>400</y>
+      <width>261</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
+     <string notr="true">QPushButton {
     border-radius:  10px;
-	background-color: rgb(228, 225, 230);
+	background-color: rgb(206, 204, 208);
 
-    color:  rgb(87, 87, 87);
+    color:  rgb(37, 37, 37);
     font-size:  33px;
 	font: 13pt &quot;Comic Sans MS&quot;;
+}
 
-</string>
+QPushButton:pressed {
+    background-color:  rgb(77, 77, 77);
+}</string>
     </property>
     <property name="text">
-     <string>Colour:</string>
+     <string>Change colour</string>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </widget>
+   <widget class="QPushButton" name="vert_colour">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>540</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    border-radius:  10px;
+	background-color: rgb(206, 204, 208);
+
+    color:  rgb(37, 37, 37);
+    font-size:  33px;
+	font: 13pt &quot;Comic Sans MS&quot;;
+}
+
+QPushButton:pressed {
+    background-color:  rgb(77, 77, 77);
+}</string>
+    </property>
+    <property name="text">
+     <string>Change colour</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="back_colour">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>610</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    border-radius:  10px;
+	background-color: rgb(206, 204, 208);
+
+    color:  rgb(37, 37, 37);
+    font-size:  33px;
+	font: 13pt &quot;Comic Sans MS&quot;;
+}
+
+QPushButton:pressed {
+    background-color:  rgb(77, 77, 77);
+}</string>
+    </property>
+    <property name="text">
+     <string>Change colour</string>
     </property>
    </widget>
    <zorder>label_2</zorder>
@@ -1195,11 +1198,9 @@ QPushButton:pressed {
    <zorder>label_4</zorder>
    <zorder>x_spin_is_2</zorder>
    <zorder>parall_type_3</zorder>
-   <zorder>x_spin_is_3</zorder>
    <zorder>x_spin_is_4</zorder>
    <zorder>thick</zorder>
    <zorder>is_round</zorder>
-   <zorder>x_spin_is_5</zorder>
    <zorder>x_spin_is_6</zorder>
    <zorder>is_square</zorder>
    <zorder>size</zorder>
@@ -1207,8 +1208,10 @@ QPushButton:pressed {
    <zorder>x_spin_is_7</zorder>
    <zorder>is_no</zorder>
    <zorder>label_7</zorder>
-   <zorder>x_spin_is_8</zorder>
    <zorder>parall_type_2</zorder>
+   <zorder>Edges_colour</zorder>
+   <zorder>vert_colour</zorder>
+   <zorder>back_colour</zorder>
   </widget>
  </widget>
  <customwidgets>
@@ -1221,8 +1224,8 @@ QPushButton:pressed {
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup_3"/>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
  </buttongroups>
 </ui>

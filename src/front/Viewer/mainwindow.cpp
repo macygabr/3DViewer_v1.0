@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "draw.h"
+#include <QSettings>
 //cloned from repo
 extern "C" {
 #include "gif.h"
@@ -10,14 +11,14 @@ extern "C" {
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    start();
 }
 
 MainWindow::~MainWindow()
 {
+    Quit();
     delete ui;
 }
-
-
 
 void MainWindow::on_name_button_clicked()
 {
@@ -32,7 +33,6 @@ void MainWindow::on_name_button_clicked()
 //print in label how many points and polygons
       }
 }
-
 
 void MainWindow::on_screenshot_clicked()
 {
@@ -49,10 +49,9 @@ void MainWindow::on_screenshot_clicked()
         msgBox.setText("Saved successfully ✨");
         msgBox.exec();
       } else {
-        QMessageBox::warning(this, "", "Failed to save 😕");
+        QMessageBox::warning(this, "", "Failed 😕");
       }
 }
-
 
 void MainWindow::on_gif_clicked()
 {
@@ -79,7 +78,7 @@ void MainWindow::on_gif_clicked()
        msgBox.setText("Saved successfully ✨");
        msgBox.exec();
      } else {
-       QMessageBox::warning(this, "", "Failed to save 😕");
+       QMessageBox::warning(this, "", "Failed 😕");
      }
 }
 
@@ -115,9 +114,51 @@ void MainWindow::on_spin_z_valueChanged(int value)
 
 }
 
+void MainWindow::on_back_colour_clicked()
+{
+    QColor colour = QColorDialog::getColor(Qt::white, this, "Select color:");
+    ui->openGLWidget->colorBackground = colour;
+    ui->openGLWidget->update();
+//    SaveState(colour);
+}
 
 
+void MainWindow::start() {
+
+    QString temp = QCoreApplication::applicationDirPath();
+    QSettings settings(temp + "/settings.ini", QSettings::IniFormat);
+
+    settings.beginGroup("Settings");
+
+    ui->openGLWidget->colorBackground =
+        settings.value("colorBackground", QColor(Qt::black)).value<QColor>();
+
+    settings.endGroup();
+
+    ui->openGLWidget->update();
+
+}
+
+void MainWindow::Quit() {
+  QString temp = QCoreApplication::applicationDirPath();
+  QSettings settings(temp + "/settings.ini", QSettings::IniFormat);
+
+  settings.beginGroup("Settings");
+
+   settings.setValue("colorBackground", ui->openGLWidget->colorBackground);
+   settings.endGroup();
+   }
 
 
+//void MainWindow::SaveState(const QColor &backc)
+//{
+//   // QColor colorBackground;
+
+//    QSettings settings("AltuninVV", "PosSizeDemo");
+//    settings.beginGroup("MainWindow");
+//        settings.setValue("backc", backc);
+////        settings.setValue("size", size);
+//    settings.endGroup();
+//}
 
 
