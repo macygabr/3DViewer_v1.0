@@ -15,8 +15,8 @@ typedef struct {
 typedef struct {
 	int count_of_vertexes;
 	int count_of_facets;
-	matrix_t matrix_3d;
-	polygon_t *polygons;
+	double* vertexesArr;
+	int* facetsArr;
 } data;
 
 data* transformationsMatrix();
@@ -26,5 +26,9 @@ int turnMatrix();
 int scalingMatrix();
 int readFile(char* filename);
 int mult_matrix();
-int parsCoordinates(data* outputdata,char* buffer);
+int parsVertexes(data* outputdata, int *index, char* buffer);
+int parsFacets(data* outputdata, int *index, char* buffer);
+double makeNum(char* content, int* i);
+int create_matrix(int rows, int columns, matrix_t *result);
+int countSize(FILE* fp,int* vertexes, int* facets);
 #endif

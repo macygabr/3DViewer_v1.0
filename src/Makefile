@@ -1,6 +1,6 @@
 CC=gcc
 WWW = -Wall -Wextra -Werror
-CFLAGS= -c $(WWW) -std=c11  
+CFLAGS= -c -std=c11  
 FLAGS= -g $(WWW)
 ADD_MATH_LIB = $(WWW) -lm
 
