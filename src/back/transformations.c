@@ -41,4 +41,24 @@ int scalingObj(dataNur* inputdata, double scale) {
   return scale > 0 ? 0 : 1;
 }
 
-int shiftObj(dataNur* inputdata, int shift, char axis) { return 0; }
+int shiftObj(dataNur* inputdata, int shift, char axis) { 
+  int error =0, add =0;
+  switch (axis) {
+    case 'x':
+      add =0;
+      break;
+    case 'y':
+      add=1;
+      break;
+    case 'z':
+      add=2;
+      break;
+    default:
+      error = 1;
+      break;
+  }
+  for (int i = 0; i < inputdata->count_of_vertexes; i += 3) 
+    inputdata->vertexesArr[i + add] += shift;
+
+return error; 
+}
