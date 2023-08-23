@@ -24,7 +24,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_name_button_clicked()
 {
-//    dataNur test;
     QString fileName =
           QFileDialog::getOpenFileName(this, "Open a file", "/Users", "*.obj");
       if (fileName != "") {
@@ -33,16 +32,7 @@ void MainWindow::on_name_button_clicked()
             QByteArray barr = fileName.toLatin1();
             strlcpy(file_way, barr, fileName.length() + 1);
             ui->name_display->setText(file_way);
-//            readFile(file_way, &test);
-//            ui->num_vert->setText(QString::number(test1.count_of_vertexes));
             ui->openGLWidget->file_name=file_way;
-//             ui->openGLWidget->update();
-//            readFile()
-//  readFile(file_way, &test);
-
-
-//struct something something = parser(file_way);
-//print in label how many points and polygons
       }
 }
 

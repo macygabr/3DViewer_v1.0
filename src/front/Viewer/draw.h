@@ -23,15 +23,9 @@ class draw : public QOpenGLWidget {
   void paintGL();
   void displayVertices();
 
-<<<<<<< HEAD
-  dataNur test;
+//  dataNur test;
   char *file_name;
-=======
-//    dataNur test;
-    char *file_name;
-int flag =0;
 
->>>>>>> 310adea3775f39580f3176d7ed1e11ce95f298e4
 
   int numV;
   int numL;
