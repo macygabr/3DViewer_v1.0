@@ -56,9 +56,10 @@ void draw::initializeGL(){
 }
 void draw ::resizeGL(int w, int h){
 
-//        glMatrixMode(GL_PROJECTION);
+//    glMatrixMode(GL_PROJECTION);
 //        glLoadIdentity();
 //        glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+//        glViewport(0, 0, (GLint)w, (GLint)h);
 
 }
 void draw::paintGL(){
@@ -67,44 +68,48 @@ void draw::paintGL(){
     glClearColor(colorBackground.redF(), colorBackground.greenF(), colorBackground.blueF(), 1.0f);
 
     glClear(GL_COLOR_BUFFER_BIT);
+    dataNur test;
+    readFile(file_name, &test);
+    glEnableClientState(GL_VERTEX_ARRAY);
+     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
+       glDrawElements(GL_LINES, test.count_of_facets*2, GL_UNSIGNED_INT,
+                      test.facetsArr);
+//    displayVertices();
 
-    displayVertices();
-
-displayVertices();
+//displayVertices();
 }
 
 void draw::displayVertices() {
-    GLdouble vertices[12];
-    vertices[0]=0.0;
-    vertices[1]=0;
-    vertices[2]=0;
-    vertices[3]=0;
-    vertices[4]=0;
-    vertices[5]=1;
-    vertices[6]=1;
-    vertices[7]=0;
-    vertices[8]=0;
-    vertices[9]=0;
-    vertices[10]=1;
-    vertices[11]=0;
+//    GLdouble vertices[12];
+//    vertices[0]=0.0;
+//    vertices[1]=0;
+//    vertices[2]=0;
+//    vertices[3]=0;
+//    vertices[4]=0;
+//    vertices[5]=1;
+//    vertices[6]=1;
+//    vertices[7]=0;
+//    vertices[8]=0;
+//    vertices[9]=0;
+//    vertices[10]=1;
+//    vertices[11]=0;
 
-GLint lines[12];
-lines[0]=0;
-lines[1]=1;
-lines[2]=0;
-lines[3]=2;
-lines[4]=0;
-lines[5]=3;
-lines[6]=1;
-lines[7]=2;
-lines[8]=2;
-lines[9]=3;
-lines[10]=3;
-lines[11]=1;
+//GLint lines[12];
+//lines[0]=0;
+//lines[1]=1;
+//lines[2]=0;
+//lines[3]=2;
+//lines[4]=0;
+//lines[5]=3;
+//lines[6]=1;
+//lines[7]=2;
+//lines[8]=2;
+//lines[9]=3;
+//lines[10]=3;
+//lines[11]=1;
 
     glEnableClientState(GL_VERTEX_ARRAY);
-     glVertexPointer(3, GL_DOUBLE, 0, vertices);
-    // glDrawArrays(GL_POINTS, 0, 4);
-       glDrawElements(GL_LINES, 12, GL_UNSIGNED_INT,
-                      lines);
+     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
+       glDrawElements(GL_LINES, test.count_of_facets*2, GL_UNSIGNED_INT,
+                      test.facetsArr);
 }

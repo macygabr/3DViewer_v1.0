@@ -9,12 +9,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ../../back/transformations.c \
     draw.cpp \
     main.cpp \
     mainwindow.cpp \
     mainwindowstate.cpp
 
 HEADERS += \
+    ../../back/transformations.h \
     draw.h \
     gif.h \
     mainwindow.h \

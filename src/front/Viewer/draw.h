@@ -8,6 +8,11 @@
 #include <QMessageBox>
 #include <QWidget>
 
+extern "C" {
+#include "../../back/transformations.h"
+}
+
+
 class draw:public QOpenGLWidget
 {
     Q_OBJECT
@@ -19,6 +24,9 @@ public:
     void resizeGL(int w, int h);
     void paintGL();
     void displayVertices();
+
+    dataNur test;
+    char *file_name;
 
     int numV;
       int numL;
