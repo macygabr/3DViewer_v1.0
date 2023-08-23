@@ -2,9 +2,11 @@
 #include "ui_mainwindow.h"
 #include "draw.h"
 #include <QSettings>
-//cloned from repo
+
+
 extern "C" {
 #include "gif.h"
+#include "../../back/transformations.h"
 }
 
 
@@ -22,6 +24,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_name_button_clicked()
 {
+    dataNur *test;
     QString fileName =
           QFileDialog::getOpenFileName(this, "Open a file", "/Users", "*.obj");
       if (fileName != "") {
@@ -29,6 +32,7 @@ void MainWindow::on_name_button_clicked()
           char *file_way = new char(fileName.length());
             QByteArray barr = fileName.toLatin1();
             strlcpy(file_way, barr, fileName.length() + 1);
+            readFile(file_way);
 //struct something something = parser(file_way);
 //print in label how many points and polygons
       }
@@ -119,7 +123,6 @@ void MainWindow::on_back_colour_clicked()
     QColor colour = QColorDialog::getColor(Qt::white, this, "Select color:");
     ui->openGLWidget->colorBackground = colour;
     ui->openGLWidget->update();
-//    SaveState(colour);
 }
 
 
@@ -150,15 +153,6 @@ void MainWindow::Quit() {
    }
 
 
-//void MainWindow::SaveState(const QColor &backc)
-//{
-//   // QColor colorBackground;
 
-//    QSettings settings("AltuninVV", "PosSizeDemo");
-//    settings.beginGroup("MainWindow");
-//        settings.setValue("backc", backc);
-////        settings.setValue("size", size);
-//    settings.endGroup();
-//}
 
 
