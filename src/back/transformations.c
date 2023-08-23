@@ -11,67 +11,53 @@ int readFile(char* filename, dataNur* outputdata) {
     int facets =0;
     int vertexesNum =0;
     int facetsNum =0;
-    char buffer[1000];
+    char *buffer = NULL;
     outputdata->count_of_vertexes =0;
     outputdata->count_of_facets =0;
     fp=fopen(filename,"r");
-    if(fp == NULL) return 1; // ???????????????????????????
+    if(fp != NULL){
     countSize(fp,&vertexes ,&facets);
     outputdata->vertexesArr = (double *)calloc(vertexes, sizeof(double)); 
     outputdata->facetsArr = (int *)calloc(facets, sizeof(int)); 
 
-    while(fgets(buffer,sizeof(buffer),fp)!= NULL){
+    while(getline(&buffer, &len, fp) != -1){
         if(buffer[0] == 'v' && buffer[1] == ' ') parsVertexes(outputdata,&vertexesNum,buffer);
         if(buffer[0] == 'f' && buffer[1] == ' ') parsFacets(outputdata,&facetsNum,buffer);
     }
     
-    for(int index=0, j=1; index<vertexes; index++, j++){
-        printf("%f ", outputdata->vertexesArr[index]);
-        if(j==3){
-            printf("\n");
-            j=0;
-        }
-    }
-
-    for(int index=0, j=1; index<facets; index++, j++){
-        printf("%d", outputdata->facetsArr[index]);
-        if(!(j%2)) printf(" ");
-        if(j==6){
-            printf("\n");
-            j=0;
-        }
-    }
-
     fclose (fp);
-    // free(buffer);
-    return 0;
+    free(buffer);
+    }
+    return fp==NULL ? 1:0;
 }
 
 int rotate (dataNur* inputdata, int degree, char axis) {
-int add1=0;
-int add2=0;
+int add1=0, add2=0, error=0;
   switch (axis){
   case 'x':
+    add1 = 1;
+    add2 = 2;
     break;
   case 'y':
-   
+    add1 = 0;
+    add2 = 2;
     break;
   case 'z':
-
+    add1 = 0;
+    add2 = 1;
     break;
-  
   default:
+    error =1;
     break;
   }
-
     for(int i=0; i<inputdata->count_of_vertexes; i+=3){
       double axis1 = inputdata->vertexesArr[i+add1];
       double axis2 = inputdata->vertexesArr[i+add2];
-      inputdata->vertexesArr[i] = cos(degree)*axis1 - sin(degree)*axis1;
-      inputdata->vertexesArr[i+1] = sin(degree)*axis2 + cos(degree)*axis2;
+      inputdata->vertexesArr[i+add1] = cos(degree)*axis2 - sin(degree)*axis1;
+      inputdata->vertexesArr[i+add2] = sin(degree)*axis1 + cos(degree)*axis2;
       }
 
-  return 0;
+  return degree>359 ? error:1;
 }
 
 int parsVertexes(dataNur* outputdata, int* vertexesNum, char* buffer){
