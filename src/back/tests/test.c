@@ -1,10 +1,11 @@
 #include "../transformations.h"
 #include <math.h>
 #include <string.h>
+#include <stdlib.h>
 
 int main(){
     dataNur outputdata;
-    char *filename = "back/tests/cube.obj";
+    char *filename = "/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/back/tests/cube.obj";
     readFile(filename,&outputdata);
     
     for(int index=0, j=1; index<outputdata.count_of_vertexes*3; index++, j++){
@@ -15,7 +16,7 @@ int main(){
         }
     }
 
-    for(int index=0, j=1; index<outputdata.count_of_facets*3; index++, j++){
+    for(int index=0, j=1; index<outputdata.count_of_facets*6; index++, j++){
         printf("%d", outputdata.facetsArr[index]);
         if(!(j%2)) printf(" ");
         if(j==6){
@@ -23,5 +24,10 @@ int main(){
             j=0;
         }
     }
+
+    printf("вершины = %d\nполигоны = %d",outputdata.count_of_vertexes ,outputdata.count_of_facets);
+
+    free(outputdata.vertexesArr);
+    free(outputdata.facetsArr);
     return 0;
 }

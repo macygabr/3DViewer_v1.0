@@ -28,7 +28,7 @@ uninstall:
 	rm -rf Calculator
 
 open:
-	open Calculator/SmartCalc.app
+	open Calculator/Smarttransformations.app
 
 dist:
 	tar -czf SmartCalc.install.tar.gz ./* *.c *.h
@@ -37,7 +37,7 @@ dvi:
 	open SmartCalc/smartcalc.txt
 
 clean:
-	rm -rf *.a report gcov tests/calc_test.c test *.gcno *.gcda
+	rm -rf *.a report gcov tests/my_test.c test *.gcno *.gcda
 
 transformations.a:
 	$(CC) $(CFLAGS) -c back/*.c 
@@ -58,15 +58,15 @@ clang:
 	clang-format -style="{BasedOnStyle: Google}" -n *.c *.h
 
 check:
-	checkmk clean_mode=1 tests/headers.check tests/*.check > tests/calc_test.c
+	checkmk clean_mode=1 back/tests/headers.check back/tests/*.check > back/tests/my_test.c
 
-test: calc.a check
-	$(CC) -std=c11  tests/calc_test.c calc.a -o test $(TEST_FLAGS)
+test: clean transformations.a check
+	$(CC) -std=c11  back/tests/my_test.c transformations.a -o test $(TEST_FLAGS)
 	./test
 
 mytest: clean transformations.a
 	$(CC) -std=c11  back/tests/test.c transformations.a -o test $(TEST_FLAGS)
 	./test
 
-valgrind: clean check calc.a test
+valgrind: clean check transformations.a test
 	CK_FORK=no valgrind --tool=memcheck --leak-check=yes --track-origins=yes  -s ./test

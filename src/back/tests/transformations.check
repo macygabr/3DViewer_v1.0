@@ -1,2 +1,6 @@
 #test transformations_1
-  ck_assert_double_eq_tol(res_orig, res, 1e-07);
+  dataNur outputdata;
+  char *filename = "back/tests/cube.obj";
+  readFile(filename,&outputdata);
+  free(outputdata.vertexesArr);
+  free(outputdata.facetsArr);
