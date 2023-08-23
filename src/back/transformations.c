@@ -1,5 +1,4 @@
 #include "transformations.h"
-
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,11 +35,10 @@ int rotateObj(dataNur* inputdata, int degree, char axis) {
   return degree > 359 ? error : 1;
 }
 
-int scalingObj(dataNur* inputdata, double scale){
-  for (int i = 0; i < inputdata->count_of_vertexes; i ++) inputdata->vertexesArr[i] *= scale;
-  return scale>0 ? 0:1;
+int scalingObj(dataNur* inputdata, double scale) {
+  for (int i = 0; i < inputdata->count_of_vertexes; i++)
+    inputdata->vertexesArr[i] *= scale;
+  return scale > 0 ? 0 : 1;
 }
 
-int shiftObj(dataNur* inputdata, int shift, char axis){
-  return 0;
-}
+int shiftObj(dataNur* inputdata, int shift, char axis) { return 0; }

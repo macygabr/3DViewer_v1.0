@@ -20,24 +20,25 @@ endif
 all: install
 
 install:
-	mkdir Calculator
-	cd SmartCalc; qmake -o ../Calculator/Makefile
-	cd Calculator; make
+	mkdir 3D_Viewer
+	cd 3D_Viewer; qmake -o ../3D_Viewer/Makefile
+	cd 3D_Viewer; make
 
 uninstall:
-	rm -rf Calculator
+	rm -rf 3D_Viewer
 
 open:
-	open Calculator/Smarttransformations.app
+	open 3D_Viewer/transformations.app
 
 dist:
-	tar -czf SmartCalc.install.tar.gz ./* *.c *.h
+	tar -czf 3D_Viewer.install.tar.gz ./* *.c *.h
 
-dvi:
-	open SmartCalc/smartcalc.txt
+dvi: clean
+	doxygen Doxyfile
+	open html/index.html
 
 clean:
-	rm -rf *.a report gcov tests/my_test.c test *.gcno *.gcda
+	rm -rf *.a report gcov tests/my_test.c test *.gcno *.gcda html
 
 transformations.a:
 	$(CC) $(CFLAGS) -c back/*.c 
@@ -55,7 +56,10 @@ gcov_report: clean check
 	rm *.gcda *.gcno *.o *.info
 
 clang:
-	clang-format -style="{BasedOnStyle: Google}" -n *.c *.h
+	clang-format -style="{BasedOnStyle: Google}" -n */*.c */*.h */*/*.c
+
+goclang:
+	clang-format -style="{BasedOnStyle: Google}" -i */*.c */*.h */*/*.c */*/*.h
 
 check:
 	checkmk clean_mode=1 back/tests/headers.check back/tests/*.check > back/tests/my_test.c

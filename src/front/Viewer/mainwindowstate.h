@@ -5,10 +5,10 @@
 //#include <QSize>
 //#include "draw.h"
 
-//class mainwindowstate
+// class mainwindowstate
 //{
-//public:
-//    explicit mainwindowstate();
+// public:
+//     explicit mainwindowstate();
 ////    void SaveState(const QPoint &pos, const QSize &size);
 //    void SaveState(const QColor &backc);
 
@@ -18,13 +18,11 @@
 
 //#endif // MAINWINDOWSTATE_H
 
-
 ////#ifndef MAINWINDOWSTATE_H
 ////#define MAINWINDOWSTATE_H
 
 ////#include <QPoint>
 ////#include <QSize>
-
 
 ////class MainWindowState
 ////{

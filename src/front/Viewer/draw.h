@@ -1,59 +1,57 @@
 #ifndef DRAW_H
 #define DRAW_H
 
+#include <QMessageBox>
+#include <QOpenGLFunctions>
 #include <QOpenGLWidget>
+#include <QWidget>
 #include <QtOpenGL>
 #include <QtOpenGLWidgets/QtOpenGLWidgets>
-#include <QOpenGLFunctions>
-#include <QMessageBox>
-#include <QWidget>
 
 extern "C" {
 #include "../../back/transformations.h"
 }
 
+class draw : public QOpenGLWidget {
+  Q_OBJECT
 
-class draw:public QOpenGLWidget
-{
-    Q_OBJECT
+ public:
+  draw(QWidget *parent = Q_NULLPTR);
+  ~draw();
+  void initializeGL();
+  void resizeGL(int w, int h);
+  void paintGL();
+  void displayVertices();
 
-public:
-    draw(QWidget *parent = Q_NULLPTR);
-     ~draw();
-    void initializeGL();
-    void resizeGL(int w, int h);
-    void paintGL();
-    void displayVertices();
+  dataNur test;
+  char *file_name;
 
-    dataNur test;
-    char *file_name;
+  int numV;
+  int numL;
 
-    int numV;
-      int numL;
+  int sizeH = 0;
+  int sizeW = 0;
 
-      int sizeH = 0;
-      int sizeW = 0;
+  double translation[3];
+  double rotation[3];
+  double scale;
 
-      double translation[3];
-      double rotation[3];
-      double scale;
+  int typeVertices;
+  int typeLines;
 
-      int typeVertices;
-      int typeLines;
+  int sizeVertices;
+  int sizeLines;
 
-      int sizeVertices;
-      int sizeLines;
+  int projection;
 
-      int projection;
+  double maxSizeAxis;
 
-      double maxSizeAxis;
+  QColor colorVertices;
+  QColor colorLines;
+  QColor colorBackground;
 
-      QColor colorVertices;
-      QColor colorLines;
-      QColor colorBackground;
-
-//private:
-//    Ui::
+  // private:
+  //     Ui::
 };
 
-#endif // DRAW_H
+#endif  // DRAW_H

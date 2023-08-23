@@ -1,9 +1,9 @@
-#include "transformations.h"
-
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "transformations.h"
 
 int readFile(char* filename, dataNur* outputdata) {
   FILE* fp;
@@ -16,10 +16,11 @@ int readFile(char* filename, dataNur* outputdata) {
   outputdata->count_of_vertexes = 0;
   outputdata->count_of_facets = 0;
   fp = fopen(filename, "r");
+ /**< Общее число точек */
   if (fp != NULL) {
     countSize(fp, &vertexes, &facets);
     outputdata->vertexesArr = (double*)calloc(vertexes, sizeof(double));
-    outputdata->facetsArr = (int*)calloc(facets*2, sizeof(int));
+    outputdata->facetsArr = (int*)calloc(facets * 2, sizeof(int));
 
     while (getline(&buffer, &len, fp) != -1) {
       if (buffer[0] == 'v' && buffer[1] == ' ')
