@@ -8,8 +8,6 @@
 int readFile(char* filename, dataNur* outputdata) {
   FILE* fp;
   size_t len = 0;
-  int vertexes = 0;
-  int facets = 0;
   int vertexesNum = 0;
   int facetsNum = -1;
   char* buffer = NULL;
@@ -18,9 +16,12 @@ int readFile(char* filename, dataNur* outputdata) {
   fp = fopen(filename, "r");
 
   if (fp != NULL) {
-    countSize(fp, &vertexes, &facets);
-    outputdata->vertexesArr = (double*)calloc(vertexes, sizeof(double));
-    outputdata->facetsArr = (int*)calloc(facets * 2, sizeof(int));
+    countSize(fp, outputdata);
+    outputdata->vertexesArr =
+        (double*)calloc(outputdata->count_of_vertexes, sizeof(double));
+    outputdata->count_of_facets *= 2;
+    outputdata->facetsArr =
+        (int*)calloc(outputdata->count_of_facets, sizeof(int));
 
     while (getline(&buffer, &len, fp) != -1) {
       if (buffer[0] == 'v' && buffer[1] == ' ')
@@ -39,7 +40,6 @@ int parsVertexes(dataNur* outputdata, int* vertexesNum, char* buffer) {
   for (int i = 1; buffer[i] != '\n' && buffer[i] != '\0'; i++)
     if (buffer[i] != ' ')
       outputdata->vertexesArr[(*vertexesNum)++] = makeNum(buffer, &i);
-  outputdata->count_of_vertexes++;
   return 0;
 }
 
@@ -55,7 +55,6 @@ int parsFacets(dataNur* outputdata, int* facetsNum, char* buffer) {
   }
 
   outputdata->facetsArr[++(*facetsNum)] = first;
-  outputdata->count_of_facets++;
   return 0;
 }
 
@@ -86,17 +85,17 @@ double makeNum(char* content, int* i) {
   return res;
 }
 
-int countSize(FILE* fp, int* vertexes, int* facets) {
+int countSize(FILE* fp, dataNur* outputdata) {
   char* line = NULL;
   size_t len = 0;
   while (getline(&line, &len, fp) != -1) {
     if (line[0] == 'v' && line[1] == ' ')
       for (int i = 1; i < strlen(line); i++)
-        if (line[i] == ' ') (*vertexes)++;
+        if (line[i] == ' ') outputdata->count_of_vertexes++;
 
     if (line[0] == 'f' && line[1] == ' ')
       for (int i = 1; i < strlen(line); i++)
-        if (line[i] == ' ') (*facets)++;
+        if (line[i] == ' ') outputdata->count_of_facets++;
   }
   rewind(fp);
   free(line);

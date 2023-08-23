@@ -14,8 +14,8 @@ int readFile(char* filename, dataNur* outputdata);/**< Считывание да
 int parsVertexes(dataNur* outputdata, int* index, char* buffer); /**< Считывание координат вершин из файла */
 int parsFacets(dataNur* outputdata, int* index, char* buffer); /**< Считывание порядка соединения точек из файла */
 double makeNum(char* content, int* i); /**< Перевод числа из строки в тип double */
-int countSize(FILE* fp, int* vertexes, int* facets);
-int rotateObj(dataNur* inputdata, int degree, char axis); /**< Поворот объекта вокруг оси */
+int countSize(FILE* fp, dataNur* outputdata);
+int rotateObj(dataNur* inputdata, double degree, char axis); /**< Поворот объекта вокруг оси */
 int scalingObj(dataNur* inputdata, double scale); /**< Изменение массштаба */
 int shiftObj(dataNur* inputdata, int shift, char axis); /**< Сдвиг объекта вдоль оси */
 #endif

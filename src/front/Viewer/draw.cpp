@@ -86,11 +86,9 @@ void draw ::resizeGL(int w, int h){
 //        glViewport(0, 0, (GLint)w, (GLint)h);
 
 }
+
 void draw::paintGL(){
-
-
     glClearColor(colorBackground.redF(), colorBackground.greenF(), colorBackground.blueF(), 1.0f);
-
     glClear(GL_COLOR_BUFFER_BIT);
 //    dataNur test;
 //    readFile(file_name, &test);
@@ -98,9 +96,8 @@ void draw::paintGL(){
      scalingObj(&test,  scale);
 
     glEnableClientState(GL_VERTEX_ARRAY);
-     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
-       glDrawElements(GL_LINES, test.count_of_facets*2, GL_UNSIGNED_INT,
-                      test.facetsArr);
+    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
+    glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,test.facetsArr);
 //    displayVertices();
 
 //displayVertices();

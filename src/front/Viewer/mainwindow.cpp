@@ -99,26 +99,36 @@ void MainWindow::on_change_x_valueChanged(int value)
 
 void MainWindow::on_zoom_valueChanged(int value)
 {
-
-    ui->openGLWidget->scale=value;
-    ui->openGLWidget->update();
+//    scalingObj(&ui->openGLWidget->test,value);
+     ui->openGLWidget->scale=value/100.0;
+     ui->openGLWidget->update();
      ui->howmuch_zoom->setText(QString::number(value)+"%");
 }
+void MainWindow::on_zoom_sliderReleased()
+{
+
+}
+
 
 void MainWindow::on_spin_x_valueChanged(int value)
 {
     ui->x_spin_is->setText("X = " + QString::number(value) + "°");
+    rotateObj(&ui->openGLWidget->test,value,'x');
+    ui->openGLWidget->update();
 }
 
 void MainWindow::on_spin_y_valueChanged(int value)
 {
      ui->y_spin_is->setText("Y = " + QString::number(value) + "°");
+     rotateObj(&ui->openGLWidget->test,value,'y');
+     ui->openGLWidget->update();
 }
 
 void MainWindow::on_spin_z_valueChanged(int value)
 {
     ui->z_spin_is->setText("Z = " + QString::number(value) + "°");
-
+    rotateObj(&ui->openGLWidget->test,value,'z');
+    ui->openGLWidget->update();
 }
 
 void MainWindow::on_back_colour_clicked()
@@ -166,4 +176,8 @@ ui->openGLWidget->translation[2]=arg1;
 ui->openGLWidget->update();
 
 }
+
+
+
+
 
