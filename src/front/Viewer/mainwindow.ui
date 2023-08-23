@@ -593,7 +593,7 @@ QPushButton:pressed {
 </string>
     </property>
     <property name="text">
-     <string>0%</string>
+     <string>100%</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1224,8 +1224,8 @@ QPushButton:pressed {
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_3"/>
   <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_3"/>
  </buttongroups>
 </ui>
