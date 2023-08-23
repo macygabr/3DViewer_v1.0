@@ -23,7 +23,7 @@ class draw : public QOpenGLWidget {
   void paintGL();
   void displayVertices();
 
-//  dataNur test;
+  dataNur test;
   char *file_name;
 
 
@@ -32,6 +32,9 @@ class draw : public QOpenGLWidget {
 
   int sizeH = 0;
   int sizeW = 0;
+
+//  double versh[9];
+//  int lin [6];
 
   double translation[3];
   double rotation[3];
@@ -52,7 +55,7 @@ class draw : public QOpenGLWidget {
   QColor colorBackground;
 
 private:
-      dataNur test;
+//      dataNur test;
 //    Ui::
 };
 

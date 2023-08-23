@@ -33,6 +33,8 @@ void MainWindow::on_name_button_clicked()
             strlcpy(file_way, barr, fileName.length() + 1);
             ui->name_display->setText(file_way);
             ui->openGLWidget->file_name=file_way;
+            readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
+
       }
 }
 
@@ -86,18 +88,19 @@ void MainWindow::on_gif_clicked()
 
 
 void MainWindow::on_change_y_valueChanged(int value)
-{
+{ui->openGLWidget->translation[1]=value;
     ui->howmuch_y->setText(QString::number(value));
 }
 
 void MainWindow::on_change_x_valueChanged(int value)
-{
+{ ui->openGLWidget->translation[0]=value;
     ui->howmuch_x->setText(QString::number(value));
 }
 
 void MainWindow::on_zoom_valueChanged(int value)
 {
-    ui->openGLWidget->scale=value/100;
+
+    ui->openGLWidget->scale=value;
     ui->openGLWidget->update();
      ui->howmuch_zoom->setText(QString::number(value)+"%");
 }
@@ -159,7 +162,7 @@ void MainWindow::Quit() {
 
 void MainWindow::on_change_z_valueChanged(int arg1)
 {
-ui->openGLWidget->scale=arg1;
+ui->openGLWidget->translation[2]=arg1;
 ui->openGLWidget->update();
 
 }
