@@ -16,7 +16,7 @@ int readFile(char* filename, dataNur* outputdata) {
   outputdata->count_of_vertexes = 0;
   outputdata->count_of_facets = 0;
   fp = fopen(filename, "r");
- /**< Общее число точек */
+
   if (fp != NULL) {
     countSize(fp, &vertexes, &facets);
     outputdata->vertexesArr = (double*)calloc(vertexes, sizeof(double));

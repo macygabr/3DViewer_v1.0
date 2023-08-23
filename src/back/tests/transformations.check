@@ -2,5 +2,8 @@
   dataNur outputdata;
   char *filename = "back/tests/cube.obj";
   readFile(filename,&outputdata);
+  scalingObj(&outputdata, 0.1);
+  ck_assert_double_eq_tol(outputdata.count_of_vertexes, 8,1e-7);
+  ck_assert_double_eq_tol(outputdata.count_of_facets, 12,1e-7);
   free(outputdata.vertexesArr);
   free(outputdata.facetsArr);
