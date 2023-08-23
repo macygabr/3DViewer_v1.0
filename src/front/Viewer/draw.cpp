@@ -62,15 +62,19 @@ void draw ::resizeGL(int w, int h){
 
 }
 void draw::paintGL(){
+
+
     glClearColor(colorBackground.redF(), colorBackground.greenF(), colorBackground.blueF(), 1.0f);
 
     glClear(GL_COLOR_BUFFER_BIT);
 
+    displayVertices();
 
+displayVertices();
 }
 
 void draw::displayVertices() {
-    GLfloat vertices[12];
+    GLdouble vertices[12];
     vertices[0]=0.0;
     vertices[1]=0;
     vertices[2]=0;
@@ -84,8 +88,8 @@ void draw::displayVertices() {
     vertices[10]=1;
     vertices[11]=0;
 
-GLfloat lines[11];
-lines[0]=0.0;
+GLint lines[12];
+lines[0]=0;
 lines[1]=1;
 lines[2]=0;
 lines[3]=2;
@@ -98,9 +102,9 @@ lines[9]=3;
 lines[10]=3;
 lines[11]=1;
 
-
-     glVertexPointer(3, GL_FLOAT, 0, vertices);
-     glDrawArrays(GL_POINTS, 0, 4);
-       glDrawElements(GL_LINES, 6, GL_UNSIGNED_INT,
+    glEnableClientState(GL_VERTEX_ARRAY);
+     glVertexPointer(3, GL_DOUBLE, 0, vertices);
+    // glDrawArrays(GL_POINTS, 0, 4);
+       glDrawElements(GL_LINES, 12, GL_UNSIGNED_INT,
                       lines);
 }

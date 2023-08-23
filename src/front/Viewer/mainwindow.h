@@ -5,6 +5,10 @@
 #include "draw.h"
 #include <QFileDialog>
 
+extern "C" {
+#include "../../back/transformations.h"
+}
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
