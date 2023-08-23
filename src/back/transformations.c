@@ -36,7 +36,7 @@ int rotateObj(dataNur* inputdata, int degree, char axis) {
 }
 
 int scalingObj(dataNur* inputdata, double scale) {
-  for (int i = 0; i < inputdata->count_of_vertexes; i++)
+  for (int i = 0; i < inputdata->count_of_vertexes*3; i++)
     inputdata->vertexesArr[i] *= scale;
   return scale > 0 ? 0 : 1;
 }

@@ -41,7 +41,7 @@ dvi: clean
 	open html/index.html
 
 clean:
-	rm -rf *.a report gcov tests/my_test.c test *.gcno *.gcda html
+	rm -rf *.a report gcov test *.gcno *.gcda html back/tests/my_test.c
 
 transformations.a:
 	$(CC) $(CFLAGS) -c back/*.c 
