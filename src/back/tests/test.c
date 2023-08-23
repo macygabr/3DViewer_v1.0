@@ -3,7 +3,8 @@
 #include <string.h>
 
 int main(){
-    char* filename;
-    readFile(filename);
+    dataNur outputdata;
+    char *filename = "back/tests/cube.obj";
+    readFile(filename,&outputdata);
     return 0;
 }

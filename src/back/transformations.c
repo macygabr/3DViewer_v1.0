@@ -4,8 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int readFile(char* filename) {
-    data outputdata;
+int readFile(char* filename, dataNur* outputdata) {
     FILE *fp;
     size_t len = 0;
     int vertexes =0;
@@ -13,54 +12,85 @@ int readFile(char* filename) {
     int vertexesNum =0;
     int facetsNum =0;
     char buffer[1000];
-    outputdata.count_of_vertexes =0;
-    outputdata.count_of_facets =0;
-    filename = "back/tests/cube.obj";
+    outputdata->count_of_vertexes =0;
+    outputdata->count_of_facets =0;
     fp=fopen(filename,"r");
     if(fp == NULL) return 1; // ???????????????????????????
     countSize(fp,&vertexes ,&facets);
-    outputdata.vertexesArr = (double *)calloc(vertexes, sizeof(double)); 
-    outputdata.facetsArr = (int *)calloc(facets, sizeof(int)); 
+    outputdata->vertexesArr = (double *)calloc(vertexes, sizeof(double)); 
+    outputdata->facetsArr = (int *)calloc(facets, sizeof(int)); 
 
     while(fgets(buffer,sizeof(buffer),fp)!= NULL){
-        if(buffer[0] == 'v' && buffer[1] == ' ') parsVertexes(&outputdata,&facetsNum,buffer);
-        // if(buffer[0] == 'f' && buffer[1] == ' ') parsFacets(&outputdata,&facetsNum,buffer);
+        if(buffer[0] == 'v' && buffer[1] == ' ') parsVertexes(outputdata,&vertexesNum,buffer);
+        if(buffer[0] == 'f' && buffer[1] == ' ') parsFacets(outputdata,&facetsNum,buffer);
     }
-    // printf("[%d]", facetsNum);
     
-    for(int index=0, j=1; index<24; index++, j++){
-        printf("%f ", outputdata.vertexesArr[index]);
+    for(int index=0, j=1; index<vertexes; index++, j++){
+        printf("%f ", outputdata->vertexesArr[index]);
         if(j==3){
             printf("\n");
             j=0;
-        } 
+        }
     }
-    // for(int index=0, j=1; index<facetsNum; index++, j++){
-    //     printf("%d ", outputdata.facetsArr[index]);
-    //     if(j==3){
-    //         printf("\n");
-    //         j=0;
-    //     } 
-    // }
+
+    for(int index=0, j=1; index<facets; index++, j++){
+        printf("%d", outputdata->facetsArr[index]);
+        if(!(j%2)) printf(" ");
+        if(j==6){
+            printf("\n");
+            j=0;
+        }
+    }
 
     fclose (fp);
     // free(buffer);
     return 0;
 }
 
-int parsVertexes(data* outputdata, int* vertexesNum, char* buffer){
+int rotate (dataNur* inputdata, int degree, char axis) {
+int add1=0;
+int add2=0;
+  switch (axis){
+  case 'x':
+    break;
+  case 'y':
+   
+    break;
+  case 'z':
 
-    for(int i=0; buffer[i] != '\n' &&  buffer[i] != '\0'; i++){
-       outputdata->vertexesArr[(*vertexesNum)++] = makeNum(buffer, &i);
-    }
+    break;
+  
+  default:
+    break;
+  }
+
+    for(int i=0; i<inputdata->count_of_vertexes; i+=3){
+      double axis1 = inputdata->vertexesArr[i+add1];
+      double axis2 = inputdata->vertexesArr[i+add2];
+      inputdata->vertexesArr[i] = cos(degree)*axis1 - sin(degree)*axis1;
+      inputdata->vertexesArr[i+1] = sin(degree)*axis2 + cos(degree)*axis2;
+      }
+
+  return 0;
+}
+
+int parsVertexes(dataNur* outputdata, int* vertexesNum, char* buffer){
+    for(int i=1; buffer[i] != '\n' &&  buffer[i] != '\0'; i++)
+        if(buffer[i] != ' ') outputdata->vertexesArr[(*vertexesNum)++] = makeNum(buffer, &i); 
     outputdata->count_of_vertexes++;
     return 0;
 }
 
-int parsFacets(data* outputdata, int *facetsNum, char* buffer){
-    for(int i=2, j=0; buffer[i] != '\n' &&  buffer[i] != '\0'; i++, j++){
-        if(buffer[i-1] == ' ') outputdata->facetsArr[(*facetsNum)++] = (int)(buffer[i]-'0');
+int parsFacets(dataNur* outputdata, int *facetsNum, char* buffer){
+  int first =0;
+    for(int i=2; buffer[i] != '\n' &&  buffer[i] != '\0'; i++){
+        if(buffer[i-1] == ' ') {
+          outputdata->facetsArr[(*facetsNum)++] = (int)(buffer[i]-'0');
+          if(first) outputdata->facetsArr[(*facetsNum)++] = (int)(buffer[i]-'0');
+          if(!first) first=(int)(buffer[i]-'0');
+        }
     }
+    outputdata->facetsArr[((*facetsNum))++] = first;
     outputdata->count_of_facets++;
     return 0;   
 }
@@ -95,8 +125,11 @@ int countSize(FILE* fp,int* vertexes, int* facets){
     char *line = NULL;
     size_t len = 0;
     while(getline(&line, &len, fp) != -1){
-         if(line[0] == 'v' && line[1] == ' ') (*vertexes)++;
-         if(line[0] == 'f' && line[1] == ' ') (*facets)++;
+         if(line[0] == 'v' && line[1] == ' ') 
+          for(int i=1; i<strlen(line); i++) if(line[i]==' ') (*vertexes)++;
+          
+         if(line[0] == 'f' && line[1] == ' ')
+          for(int i=1; i<strlen(line); i++) if(line[i]==' ') (*facets)++;
     }
     rewind(fp);
     free(line);
