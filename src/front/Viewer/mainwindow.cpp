@@ -24,7 +24,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_name_button_clicked()
 {
-    dataNur test1;
+//    dataNur test;
     QString fileName =
           QFileDialog::getOpenFileName(this, "Open a file", "/Users", "*.obj");
       if (fileName != "") {
@@ -33,11 +33,12 @@ void MainWindow::on_name_button_clicked()
             QByteArray barr = fileName.toLatin1();
             strlcpy(file_way, barr, fileName.length() + 1);
             ui->name_display->setText(file_way);
-//            readFile(file_way, &test1);
+//            readFile(file_way, &test);
 //            ui->num_vert->setText(QString::number(test1.count_of_vertexes));
             ui->openGLWidget->file_name=file_way;
-             ui->openGLWidget->update();
-
+//             ui->openGLWidget->update();
+//            readFile()
+//  readFile(file_way, &test);
 
 
 //struct something something = parser(file_way);
@@ -106,6 +107,8 @@ void MainWindow::on_change_x_valueChanged(int value)
 
 void MainWindow::on_zoom_valueChanged(int value)
 {
+    ui->openGLWidget->scale=value/100;
+    ui->openGLWidget->update();
      ui->howmuch_zoom->setText(QString::number(value)+"%");
 }
 
@@ -162,4 +165,12 @@ void MainWindow::Quit() {
 
 
 
+
+
+void MainWindow::on_change_z_valueChanged(int arg1)
+{
+ui->openGLWidget->scale=arg1;
+ui->openGLWidget->update();
+
+}
 

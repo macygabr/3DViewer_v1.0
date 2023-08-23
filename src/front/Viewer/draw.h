@@ -25,8 +25,10 @@ public:
     void paintGL();
     void displayVertices();
 
-    dataNur test;
+//    dataNur test;
     char *file_name;
+int flag =0;
+
 
     int numV;
       int numL;
@@ -52,7 +54,8 @@ public:
       QColor colorLines;
       QColor colorBackground;
 
-//private:
+private:
+      dataNur test;
 //    Ui::
 };
 

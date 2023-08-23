@@ -1,6 +1,10 @@
 #include "draw.h"
 #include <QOpenGLFunctions>
 
+extern "C" {
+#include "../../back/transformations.h"
+}
+
 draw::draw(QWidget *parent) : QOpenGLWidget(parent)
 {
       rotation[0] = 0.0;
@@ -68,8 +72,11 @@ void draw::paintGL(){
     glClearColor(colorBackground.redF(), colorBackground.greenF(), colorBackground.blueF(), 1.0f);
 
     glClear(GL_COLOR_BUFFER_BIT);
-    dataNur test;
+//    dataNur test;
     readFile(file_name, &test);
+
+     scalingObj(&test,  scale);
+
     glEnableClientState(GL_VERTEX_ARRAY);
      glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
        glDrawElements(GL_LINES, test.count_of_facets*2, GL_UNSIGNED_INT,
@@ -79,7 +86,7 @@ void draw::paintGL(){
 //displayVertices();
 }
 
-void draw::displayVertices() {
+//void draw::displayVertices() {
 //    GLdouble vertices[12];
 //    vertices[0]=0.0;
 //    vertices[1]=0;
@@ -108,8 +115,8 @@ void draw::displayVertices() {
 //lines[10]=3;
 //lines[11]=1;
 
-    glEnableClientState(GL_VERTEX_ARRAY);
-     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
-       glDrawElements(GL_LINES, test.count_of_facets*2, GL_UNSIGNED_INT,
-                      test.facetsArr);
-}
+//    glEnableClientState(GL_VERTEX_ARRAY);
+//     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
+//       glDrawElements(GL_LINES, test.count_of_facets*2, GL_UNSIGNED_INT,
+//                      test.facetsArr);
+//}

@@ -5,9 +5,10 @@
 #include "draw.h"
 #include <QFileDialog>
 
-extern "C" {
-#include "../../back/transformations.h"
-}
+//extern "C" {
+//#include "gif.h"
+//#include "../../back/transformations.h"
+//}
 
 
 QT_BEGIN_NAMESPACE
@@ -40,6 +41,8 @@ private slots:
     void on_spin_z_valueChanged(int value);
 
     void on_back_colour_clicked();
+
+    void on_change_z_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;
