@@ -13,13 +13,16 @@ OS := $(shell uname -s)
 ifeq ($(OS), Linux)
 	TEST_FLAGS += -lsubunit -lrt -lm
 	OPEN = echo 'report: C5_calc-2/src/report/index.html'
+	DOX = echo 'you must install doxygen'
 else
 	OPEN=open ./report/index.html
+	DOX =brew install doxygen
 endif
 
 all: install
 
 install:
+	$(DOX)
 	mkdir 3D_Viewer
 	cd 3D_Viewer; qmake -o ../3D_Viewer/Makefile
 	cd 3D_Viewer; make
