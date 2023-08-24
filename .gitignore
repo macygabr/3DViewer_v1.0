@@ -4,7 +4,7 @@
 # Object files
 *.o
 *.ko
-*.obj
+# *.obj
 *.elf
 
 # Linker output
@@ -50,3 +50,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# My listignore
+.vscode
+.DS_Store
+front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug/*.cpp

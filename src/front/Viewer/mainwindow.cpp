@@ -30,14 +30,14 @@ void MainWindow::on_name_button_clicked() {
     QByteArray barr = fileName.toLatin1();
     strlcpy(file_way, barr, fileName.length() + 1);
     ui->openGLWidget->file_name = file_way;
-    readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
-    ui->num_edges->setText(
-        " Number of edges: " +
-        QString::number(ui->openGLWidget->test.count_of_facets));
-    ui->num_vert->setText(
-        " Number of vertices: " +
-        QString::number(ui->openGLWidget->test.count_of_vertexes));
-    nurlanization(&ui->openGLWidget->test);
+//    readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
+//    ui->num_edges->setText(
+//        " Number of edges: " +
+//        QString::number(ui->openGLWidget->test.count_of_facets/6));
+//    ui->num_vert->setText(
+//        " Number of vertices: " +
+//        QString::number(ui->openGLWidget->test.count_of_vertexes/3));
+//    nurlanization(&ui->openGLWidget->test);
     clean();
   }
 }
@@ -178,8 +178,7 @@ void MainWindow::start() {
   ui->openGLWidget->update();
 }
 
-void MainWindow::Quit()
-{
+void MainWindow::Quit() {
   QString temp = QCoreApplication::applicationDirPath();
   QSettings settings(temp + "/settings.ini", QSettings::IniFormat);
 
@@ -194,66 +193,44 @@ void MainWindow::on_change_z_valueChanged(int arg1) {
   ui->openGLWidget->update();
 }
 
-void MainWindow::on_central_type_clicked()
-{
-    ui->openGLWidget->projection=0;
+void MainWindow::on_central_type_clicked() { ui->openGLWidget->projection = 0; }
+
+void MainWindow::on_parall_type_clicked() {
+  ui->openGLWidget->projection = 1;
+  ui->openGLWidget->update();
 }
 
-
-void MainWindow::on_parall_type_clicked()
-{
-    ui->openGLWidget->projection=1;
-    ui->openGLWidget->update();
+void MainWindow::on_solid_clicked() {
+  ui->openGLWidget->typeLines = 0;
+  ui->openGLWidget->update();
 }
 
-
-void MainWindow::on_solid_clicked()
-{
-    ui->openGLWidget->typeLines=0;
-    ui->openGLWidget->update();
+void MainWindow::on_dashed_clicked() {
+  ui->openGLWidget->typeLines = 1;
+  ui->openGLWidget->update();
 }
 
-void MainWindow::on_openGLWidget_aboutToCompose()
-{
-
-void MainWindow::on_dashed_clicked()
-{
-    ui->openGLWidget->typeLines=1;
-    ui->openGLWidget->update();
+void MainWindow::on_is_no_clicked() {
+  ui->openGLWidget->typeVertices = 0;
+  ui->openGLWidget->update();
 }
 
-
-void MainWindow::on_is_no_clicked()
-{
-    ui->openGLWidget->typeVertices=0;
-    ui->openGLWidget->update();
+void MainWindow::on_is_square_clicked() {
+  ui->openGLWidget->typeVertices = 2;
+  ui->openGLWidget->update();
 }
 
-
-void MainWindow::on_is_square_clicked()
-{
-    ui->openGLWidget->typeVertices=2;
-    ui->openGLWidget->update();
+void MainWindow::on_is_round_clicked() {
+  ui->openGLWidget->typeVertices = 1;
+  ui->openGLWidget->update();
 }
 
-
-void MainWindow::on_is_round_clicked()
-{
-    ui->openGLWidget->typeVertices=1;
-    ui->openGLWidget->update();
+void MainWindow::on_thick_valueChanged(int value) {
+  ui->openGLWidget->sizeLines = value;
+  ui->openGLWidget->update();
 }
 
-
-void MainWindow::on_thick_valueChanged(int value)
-{
-    ui->openGLWidget->sizeLines=value;
-    ui->openGLWidget->update();
+void MainWindow::on_size_valueChanged(int value) {
+  ui->openGLWidget->sizeVertices = value;
+  ui->openGLWidget->update();
 }
-
-
-void MainWindow::on_size_valueChanged(int value)
-{
-    ui->openGLWidget->sizeVertices=value;
-    ui->openGLWidget->update();
-}
-

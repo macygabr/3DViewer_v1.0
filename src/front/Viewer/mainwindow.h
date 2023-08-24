@@ -68,8 +68,6 @@ class MainWindow : public QMainWindow {
 
   void on_size_valueChanged(int value);
 
-    void on_central_type_clicked(bool checked);
-
 private:
   Ui::MainWindow *ui;
 };
