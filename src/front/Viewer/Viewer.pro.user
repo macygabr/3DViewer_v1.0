@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 7.0.0, 2023-08-23T20:06:08. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
   <value type="QByteArray">{ed6d479d-d24e-4255-82e7-03c4786cec86}</value>
+=======
+<!-- Written by QtCreator 7.0.0, 2023-08-23T23:16:34. -->
+<qtcreator>
+ <data>
+  <variable>EnvironmentId</variable>
+  <value type="QByteArray">{2ba8767b-5308-436c-bf28-3a2dce631496}</value>
+>>>>>>> 39a13024d8ba2db3512a2f2a3ebdbe12b689bea1
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -91,14 +99,23 @@
    <value type="QString" key="DeviceType">Desktop</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop (x86-darwin-generic-mach_o-64bit)</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop (x86-darwin-generic-mach_o-64bit)</value>
+<<<<<<< HEAD
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{bc4166dd-117e-4b03-8f5a-9981dcfd6dae}</value>
+=======
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{79177efe-a159-480e-8ee6-5591bc96ccea}</value>
+>>>>>>> 39a13024d8ba2db3512a2f2a3ebdbe12b689bea1
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="int" key="EnableQmlDebugging">0</value>
+<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/roddstat/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/roddstat/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug</value>
+=======
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug</value>
+>>>>>>> 39a13024d8ba2db3512a2f2a3ebdbe12b689bea1
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -136,8 +153,13 @@
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
+<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/roddstat/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Release</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/roddstat/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Release</value>
+=======
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Release</value>
+>>>>>>> 39a13024d8ba2db3512a2f2a3ebdbe12b689bea1
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -177,8 +199,13 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
     <value type="int" key="EnableQmlDebugging">0</value>
+<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/roddstat/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Profile</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/roddstat/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Profile</value>
+=======
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Profile</value>
+>>>>>>> 39a13024d8ba2db3512a2f2a3ebdbe12b689bea1
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -237,6 +264,7 @@
     <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+<<<<<<< HEAD
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes">
      <value type="QString">DYLD_FRAMEWORK_PATH</value>
      <value type="QString">DYLD_LIBRARY_PATH</value>
@@ -249,6 +277,16 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/roddstat/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug/Viewer.app/Contents/MacOS</value>
+=======
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/front/Viewer/Viewer.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/front/Viewer/Viewer.pro</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug/Viewer.app/Contents/MacOS</value>
+>>>>>>> 39a13024d8ba2db3512a2f2a3ebdbe12b689bea1
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
