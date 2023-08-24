@@ -41,7 +41,7 @@ dvi: clean
 	open html/index.html
 
 clean:
-	rm -rf *.a report gcov test *.gcno *.gcda html back/tests/my_test.c
+	rm -rf *.a report gcov test *.gcno *.gcda html back/tests/my_test.c front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug
 
 transformations.a:
 	$(CC) $(CFLAGS) -c back/*.c 
