@@ -7,6 +7,26 @@ extern "C" {
 
 draw::draw(QWidget *parent) : QOpenGLWidget(parent)
 {
+
+
+//    versh[0]=0.0;
+//       versh[1]=0;
+//       versh[2]=0;
+//       versh[3]=0;
+//       versh[4]=0;
+//       versh[5]=1;
+//       versh[6]=1;
+//       versh[7]=0;
+//       versh[8]=0;
+//     lin [0] =0;
+//     lin [1] =1;
+//     lin [2] =1;
+//     lin [3]=2;
+//     lin [4]=2;
+//     lin [5]=0;
+
+
+
       rotation[0] = 0.0;
       rotation[1] = 0.0;
       rotation[2] = 0.0;
@@ -66,21 +86,18 @@ void draw ::resizeGL(int w, int h){
 //        glViewport(0, 0, (GLint)w, (GLint)h);
 
 }
+
 void draw::paintGL(){
-
-
     glClearColor(colorBackground.redF(), colorBackground.greenF(), colorBackground.blueF(), 1.0f);
-
     glClear(GL_COLOR_BUFFER_BIT);
 //    dataNur test;
-    readFile(file_name, &test);
+//    readFile(file_name, &test);
 
      scalingObj(&test,  scale);
 
     glEnableClientState(GL_VERTEX_ARRAY);
-     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
-       glDrawElements(GL_LINES, test.count_of_facets*2, GL_UNSIGNED_INT,
-                      test.facetsArr);
+    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
+    glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,test.facetsArr);
 //    displayVertices();
 
 //displayVertices();

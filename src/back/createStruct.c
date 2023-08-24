@@ -8,8 +8,6 @@
 int readFile(char* filename, dataNur* outputdata) {
   FILE* fp;
   size_t len = 0;
-  int vertexes = 0;
-  int facets = 0;
   int vertexesNum = 0;
   int facetsNum = -1;
   char* buffer = NULL;
@@ -18,9 +16,12 @@ int readFile(char* filename, dataNur* outputdata) {
   fp = fopen(filename, "r");
 
   if (fp != NULL) {
-    countSize(fp, &vertexes, &facets);
-    outputdata->vertexesArr = (double*)calloc(vertexes, sizeof(double));
-    outputdata->facetsArr = (int*)calloc(facets * 2, sizeof(int));
+    countSize(fp, outputdata);
+    outputdata->vertexesArr =
+        (double*)calloc(outputdata->count_of_vertexes, sizeof(double));
+    outputdata->count_of_facets *= 2;
+    outputdata->facetsArr =
+        (int*)calloc(outputdata->count_of_facets, sizeof(int));
 
     while (getline(&buffer, &len, fp) != -1) {
       if (buffer[0] == 'v' && buffer[1] == ' ')
@@ -39,23 +40,22 @@ int parsVertexes(dataNur* outputdata, int* vertexesNum, char* buffer) {
   for (int i = 1; buffer[i] != '\n' && buffer[i] != '\0'; i++)
     if (buffer[i] != ' ')
       outputdata->vertexesArr[(*vertexesNum)++] = makeNum(buffer, &i);
-  outputdata->count_of_vertexes++;
   return 0;
 }
 
 int parsFacets(dataNur* outputdata, int* facetsNum, char* buffer) {
-  int first = 0;
-  int block = 0;
-  for (int i = 1; buffer[i] != '\n' && buffer[i] != '\0'; i++) {
-    if (buffer[i - 1] == ' ') {
-      outputdata->facetsArr[++(*facetsNum)] = (int)(buffer[i] - '0');
-      if (first) outputdata->facetsArr[++(*facetsNum)] = (int)(buffer[i] - '0');
-      if (!first) first = (int)(buffer[i] - '0');
+  int flag = 0, first = 0;
+  for (char* start = buffer, *end = start; *start && *start != '\n' && *start != '\0' && *start != EOF; start++) {
+    while ((*start > '9' || *start < '0') && *start) start++;
+
+    if (*(start - 1) == ' ' && *start) {
+      outputdata->facetsArr[++(*facetsNum)] = abs(((int)strtol(start, &end,10)) - 1);
+      if (flag) outputdata->facetsArr[++(*facetsNum)] = abs(((int)strtol(start, &end,10)) - 1);
+      if (!flag++) first = outputdata->facetsArr[(*facetsNum)];
+      start = end;
     }
   }
-
   outputdata->facetsArr[++(*facetsNum)] = first;
-  outputdata->count_of_facets++;
   return 0;
 }
 
@@ -66,19 +66,17 @@ double makeNum(char* content, int* i) {
   int dot = 0;
   int minus = 0;
 
-  for (; content[(*i)] != ' ' && content[(*i)] != '\0' && content[(*i)] != '\n';
-       (*i)++) {
+  for (; content[(*i)] != ' ' && content[(*i)] != '\0' && content[(*i)] != '\n'; (*i)++) {
     if (content[(*i)] == '.') {
       flag = j;
       dot++;
-    }
-    if (content[(*i)] >= '0' && content[(*i)] <= '9') {
+    } else if (content[(*i)] >= '0' && content[(*i)] <= '9') {
       j++;
       res += (double)(content[(*i)] - '0') / ((int)pow(10, j));
-    }
-    if (content[(*i)] == '-') {
+    } else if (content[(*i)] == '-') {
       minus = 1;
-    }
+    } else
+      break;
   }
   if (!flag) flag = j;
   res *= pow(10, (flag));
@@ -86,17 +84,19 @@ double makeNum(char* content, int* i) {
   return res;
 }
 
-int countSize(FILE* fp, int* vertexes, int* facets) {
+int countSize(FILE* fp, dataNur* outputdata) {
   char* line = NULL;
   size_t len = 0;
   while (getline(&line, &len, fp) != -1) {
     if (line[0] == 'v' && line[1] == ' ')
       for (int i = 1; i < strlen(line); i++)
-        if (line[i] == ' ') (*vertexes)++;
+        if (line[i - 1] == ' ' && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
+          outputdata->count_of_vertexes++;
 
     if (line[0] == 'f' && line[1] == ' ')
       for (int i = 1; i < strlen(line); i++)
-        if (line[i] == ' ') (*facets)++;
+        if (line[i - 1] == ' ' && line[i] >= '0' && line[i] <= '9')
+          outputdata->count_of_facets++;
   }
   rewind(fp);
   free(line);

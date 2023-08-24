@@ -46,6 +46,10 @@ private slots:
 
     void on_change_z_valueChanged(int arg1);
 
+    void on_zoom_sliderReleased();
+
+    void on_openGLWidget_aboutToCompose();
+
 private:
     Ui::MainWindow *ui;
 };
