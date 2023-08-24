@@ -49,8 +49,8 @@ int parsFacets(dataNur* outputdata, int* facetsNum, char* buffer) {
     while ((*start > '9' || *start < '0') && *start) start++;
 
     if (*(start - 1) == ' ' && *start) {
-      outputdata->facetsArr[++(*facetsNum)] = ((int)strtol(start, &end,10)) - 1;
-      if (flag) outputdata->facetsArr[++(*facetsNum)] = ((int)strtol(start, &end,10)) - 1;
+      outputdata->facetsArr[++(*facetsNum)] = abs(((int)strtol(start, &end,10)) - 1);
+      if (flag) outputdata->facetsArr[++(*facetsNum)] = abs(((int)strtol(start, &end,10)) - 1);
       if (!flag++) first = outputdata->facetsArr[(*facetsNum)];
       start = end;
     }
@@ -66,8 +66,7 @@ double makeNum(char* content, int* i) {
   int dot = 0;
   int minus = 0;
 
-  for (; content[(*i)] != ' ' && content[(*i)] != '\0' && content[(*i)] != '\n';
-       (*i)++) {
+  for (; content[(*i)] != ' ' && content[(*i)] != '\0' && content[(*i)] != '\n'; (*i)++) {
     if (content[(*i)] == '.') {
       flag = j;
       dot++;

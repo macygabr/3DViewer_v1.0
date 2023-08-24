@@ -34,7 +34,6 @@ void MainWindow::on_name_button_clicked()
             ui->name_display->setText(file_way);
             ui->openGLWidget->file_name=file_way;
             readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
-
       }
 }
 
@@ -112,8 +111,8 @@ void MainWindow::on_zoom_sliderReleased()
 
 void MainWindow::on_spin_x_valueChanged(int value)
 {
+    rotateObj(&ui->openGLWidget->test,value - ui->x_spin_is->text().toInt(),'x');
     ui->x_spin_is->setText("X = " + QString::number(value) + "°");
-    rotateObj(&ui->openGLWidget->test,value,'x');
     ui->openGLWidget->update();
 }
 
@@ -126,8 +125,8 @@ void MainWindow::on_spin_y_valueChanged(int value)
 
 void MainWindow::on_spin_z_valueChanged(int value)
 {
-    ui->z_spin_is->setText("Z = " + QString::number(value) + "°");
-    rotateObj(&ui->openGLWidget->test,value,'z');
+    rotateObj(&ui->openGLWidget->test,(value - ui->z_spin_is->text().toInt())*100,'z');
+    ui->z_spin_is->setText(QString::number(value));
     ui->openGLWidget->update();
 }
 
@@ -167,9 +166,6 @@ void MainWindow::Quit() {
 
 
 
-
-
-
 void MainWindow::on_change_z_valueChanged(int arg1)
 {
 ui->openGLWidget->translation[2]=arg1;
@@ -180,4 +176,10 @@ ui->openGLWidget->update();
 
 
 
+
+
+void MainWindow::on_openGLWidget_aboutToCompose()
+{
+
+}
 

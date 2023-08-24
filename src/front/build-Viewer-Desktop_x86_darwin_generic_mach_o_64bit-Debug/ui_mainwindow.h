@@ -71,9 +71,9 @@ public:
     QPushButton *Edges_colour;
     QPushButton *vert_colour;
     QPushButton *back_colour;
+    QButtonGroup *buttonGroup_3;
     QButtonGroup *buttonGroup;
     QButtonGroup *buttonGroup_2;
-    QButtonGroup *buttonGroup_3;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -218,6 +218,7 @@ public:
 "	font: 13pt \"Comic Sans MS\";\n"
 "\n"
 ""));
+        spin_x->setMinimum(0);
         spin_x->setMaximum(359);
         spin_x->setWrapping(true);
         spin_x->setNotchTarget(3.590000000000000);

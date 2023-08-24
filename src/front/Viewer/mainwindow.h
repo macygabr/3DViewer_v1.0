@@ -48,6 +48,8 @@ private slots:
 
     void on_zoom_sliderReleased();
 
+    void on_openGLWidget_aboutToCompose();
+
 private:
     Ui::MainWindow *ui;
 };

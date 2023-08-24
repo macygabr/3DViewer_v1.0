@@ -7,7 +7,7 @@
 int main() {
   dataNur outputdata;
   char *filename =
-      "/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/back/tests/cube.obj";
+      "back/tests/cube.obj";
   readFile(filename, &outputdata);
   // scalingObj(&outputdata, 1);
   // rotateObj(&outputdata,1,'y');

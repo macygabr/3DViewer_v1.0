@@ -25,10 +25,10 @@ class draw : public QOpenGLWidget {
 
   dataNur test;
   char *file_name;
+  int lastState;
 
-
-  int numV;
-  int numL;
+  int numV =0;
+  int numL=0;
 
   int sizeH = 0;
   int sizeW = 0;
