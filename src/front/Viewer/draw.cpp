@@ -61,79 +61,72 @@ draw::draw(QWidget *parent) : QOpenGLWidget(parent)
 
 }
 
-draw::~draw() { /*freeData(&model);*/ }
+draw::~draw() {  }
 
 void draw::initializeGL(){
-//      initializeOpenGLFunctions();
 
-//    glShadeModel(GL_FLAT);
-//    glEnable(GL_CULL_FACE);
     glClearColor(colorBackground.redF(), colorBackground.greenF(), colorBackground.blueF(), 1.0f);
-//      glEnable(GL_DEPTH);
 
-
-//      initializeOpenGLFunctions();
       glEnable(GL_DEPTH);
-//      glShadeModel(GL_FLAT);
-//      glEnable(GL_CULL_FACE);
-//    glClearColor(0,0,1,0);
+
 }
 void draw ::resizeGL(int w, int h){
 
-//    glMatrixMode(GL_PROJECTION);
-//        glLoadIdentity();
-//        glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
-//        glViewport(0, 0, (GLint)w, (GLint)h);
 
 }
 
 void draw::paintGL(){
     glClearColor(colorBackground.redF(), colorBackground.greenF(), colorBackground.blueF(), 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-//    dataNur test;
-//    readFile(file_name, &test);
 
-//    scalingObj(&test,  scale);
 
+    glEnableVertexAttribArray(0);
     glEnableClientState(GL_VERTEX_ARRAY);
-    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
-    glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,test.facetsArr);
-//    displayVertices();
 
-//displayVertices();
-}
 
-//void draw::displayVertices() {
-//    GLdouble vertices[12];
-//    vertices[0]=0.0;
-//    vertices[1]=0;
-//    vertices[2]=0;
-//    vertices[3]=0;
-//    vertices[4]=0;
-//    vertices[5]=1;
-//    vertices[6]=1;
-//    vertices[7]=0;
-//    vertices[8]=0;
-//    vertices[9]=0;
-//    vertices[10]=1;
-//    vertices[11]=0;
+    displayVertices();
+    displayLines();
 
-//GLint lines[12];
-//lines[0]=0;
-//lines[1]=1;
-//lines[2]=0;
-//lines[3]=2;
-//lines[4]=0;
-//lines[5]=3;
-//lines[6]=1;
-//lines[7]=2;
-//lines[8]=2;
-//lines[9]=3;
-//lines[10]=3;
-//lines[11]=1;
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableVertexAttribArray(0);
+
+
 
 //    glEnableClientState(GL_VERTEX_ARRAY);
-//     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
-//       glDrawElements(GL_LINES, test.count_of_facets*2, GL_UNSIGNED_INT,
-//                      test.facetsArr);
-//}
+//    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
+//    glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,test.facetsArr);
+
+}
+
+void draw::displayVertices() {
+  if (typeVertices == 1) {
+    glDisable(GL_POINT_SPRITE);
+    glEnable(GL_POINT_SMOOTH);
+  } else if (typeVertices == 0) {
+    glDisable(GL_POINT_SMOOTH);
+    glEnable(GL_POINT_SPRITE);
+  }
+  if (typeVertices != 0) {
+    glColor3f(colorVertices.redF(), colorVertices.greenF(),
+              colorVertices.blueF());
+    glPointSize(sizeVertices);
+     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
+//    glVertexPointer(3, GL_DOUBLE, 0, model.vertices);
+    glDrawArrays(GL_POINTS, 0,  test.count_of_vertexes/3 );
+  }
+}
+
+void draw::displayLines() {
+  if (typeLines == 1) {
+    glLineStipple(3, 0x00FF);
+    glEnable(GL_LINE_STIPPLE);
+  } else {
+    glDisable(GL_LINE_STIPPLE);
+  }
+  if (typeLines != 0) {
+    glColor3f(colorLines.redF(), colorLines.greenF(), colorLines.blueF());
+    glLineWidth(sizeLines);
+    glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,test.facetsArr);
+
+  }
+}

@@ -7,8 +7,7 @@
 
 int rotateObj(dataNur* inputdata, double degree, char axis) {
   int add1 = 0, add2 = 0, error = 0;
-  degree *= M_PI / 180.0;
-  // degree *= M_PI;
+  degree *= S21_PI / 180.0;
   switch (axis) {
     case 'x':
       add1 = 1;

@@ -234,7 +234,7 @@ QPushButton:pressed {
 </string>
     </property>
     <property name="text">
-     <string> Number of vertices:</string>
+     <string> Number of vertices: 0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -264,7 +264,7 @@ QPushButton:pressed {
 </string>
     </property>
     <property name="text">
-     <string> Number of edges: </string>
+     <string> Number of edges: 0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -402,9 +402,9 @@ QPushButton:pressed {
    <widget class="QLabel" name="x_spin_is">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>790</x>
       <y>150</y>
-      <width>58</width>
+      <width>21</width>
       <height>16</height>
      </rect>
     </property>
@@ -421,17 +421,14 @@ QPushButton:pressed {
     </property>
     <property name="text">
      <string>0</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="y_spin_is">
     <property name="geometry">
      <rect>
-      <x>850</x>
+      <x>887</x>
       <y>150</y>
-      <width>58</width>
+      <width>21</width>
       <height>16</height>
      </rect>
     </property>
@@ -450,15 +447,15 @@ QPushButton:pressed {
      <string>0</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="z_spin_is">
     <property name="geometry">
      <rect>
-      <x>950</x>
+      <x>990</x>
       <y>150</y>
-      <width>58</width>
+      <width>31</width>
       <height>16</height>
      </rect>
     </property>
@@ -477,7 +474,7 @@ QPushButton:pressed {
      <string>0</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QSlider" name="zoom">
@@ -485,7 +482,7 @@ QPushButton:pressed {
      <rect>
       <x>740</x>
       <y>210</y>
-      <width>251</width>
+      <width>241</width>
       <height>25</height>
      </rect>
     </property>
@@ -578,9 +575,9 @@ QPushButton:pressed {
    <widget class="QLabel" name="howmuch_zoom">
     <property name="geometry">
      <rect>
-      <x>1000</x>
+      <x>990</x>
       <y>210</y>
-      <width>41</width>
+      <width>21</width>
       <height>21</height>
      </rect>
     </property>
@@ -597,9 +594,6 @@ QPushButton:pressed {
     </property>
     <property name="text">
      <string>100</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -631,7 +625,7 @@ QPushButton:pressed {
    <widget class="QRadioButton" name="parall_type">
     <property name="geometry">
      <rect>
-      <x>770</x>
+      <x>900</x>
       <y>270</y>
       <width>99</width>
       <height>20</height>
@@ -651,7 +645,7 @@ QPushButton:pressed {
      <string>Parallel</string>
     </property>
     <property name="checked">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <attribute name="buttonGroup">
      <string notr="true">buttonGroup</string>
@@ -660,7 +654,7 @@ QPushButton:pressed {
    <widget class="QRadioButton" name="central_type">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>780</x>
       <y>270</y>
       <width>99</width>
       <height>20</height>
@@ -678,6 +672,9 @@ QPushButton:pressed {
     </property>
     <property name="text">
      <string>Central</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
     <attribute name="buttonGroup">
      <string notr="true">buttonGroup</string>
@@ -762,7 +759,7 @@ QPushButton:pressed {
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QRadioButton" name="parall_type_2">
+   <widget class="QRadioButton" name="dashed">
     <property name="geometry">
      <rect>
       <x>910</x>
@@ -784,11 +781,14 @@ QPushButton:pressed {
     <property name="text">
      <string>Dashed</string>
     </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
     <attribute name="buttonGroup">
      <string notr="true">buttonGroup_2</string>
     </attribute>
    </widget>
-   <widget class="QRadioButton" name="parall_type_3">
+   <widget class="QRadioButton" name="solid">
     <property name="geometry">
      <rect>
       <x>830</x>
@@ -811,7 +811,7 @@ QPushButton:pressed {
      <string>Solid</string>
     </property>
     <property name="checked">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <attribute name="buttonGroup">
      <string notr="true">buttonGroup_2</string>
@@ -864,11 +864,14 @@ QPushButton:pressed {
 
 </string>
     </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
     <property name="maximum">
      <number>100</number>
     </property>
     <property name="value">
-     <number>100</number>
+     <number>1</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -877,10 +880,10 @@ QPushButton:pressed {
    <widget class="QRadioButton" name="is_round">
     <property name="geometry">
      <rect>
-      <x>810</x>
+      <x>960</x>
       <y>470</y>
-      <width>99</width>
-      <height>20</height>
+      <width>81</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -933,9 +936,9 @@ QPushButton:pressed {
    <widget class="QRadioButton" name="is_square">
     <property name="geometry">
      <rect>
-      <x>890</x>
+      <x>870</x>
       <y>470</y>
-      <width>99</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -976,11 +979,14 @@ QPushButton:pressed {
 
 </string>
     </property>
+    <property name="minimum">
+     <number>10</number>
+    </property>
     <property name="maximum">
      <number>100</number>
     </property>
     <property name="value">
-     <number>100</number>
+     <number>10</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -1042,7 +1048,7 @@ QPushButton:pressed {
    <widget class="QRadioButton" name="is_no">
     <property name="geometry">
      <rect>
-      <x>970</x>
+      <x>810</x>
       <y>470</y>
       <width>61</width>
       <height>20</height>
@@ -1060,6 +1066,9 @@ QPushButton:pressed {
     </property>
     <property name="text">
      <string>No</string>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
     </property>
     <attribute name="buttonGroup">
      <string notr="true">buttonGroup_3</string>
@@ -1172,6 +1181,111 @@ QPushButton:pressed {
      <string>Change colour</string>
     </property>
    </widget>
+   <widget class="QLabel" name="x_spin_is_3">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>150</y>
+      <width>21</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+    border-radius:  10px;
+	background-color: rgb(228, 225, 230);
+
+    color:  rgb(87, 87, 87);
+    font-size:  33px;
+	font: 13pt &quot;Comic Sans MS&quot;;
+
+</string>
+    </property>
+    <property name="text">
+     <string>X=</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="x_spin_is_5">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>150</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+    border-radius:  10px;
+	background-color: rgb(228, 225, 230);
+
+    color:  rgb(87, 87, 87);
+    font-size:  33px;
+	font: 13pt &quot;Comic Sans MS&quot;;
+
+</string>
+    </property>
+    <property name="text">
+     <string>Y=</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="x_spin_is_8">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>150</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+    border-radius:  10px;
+	background-color: rgb(228, 225, 230);
+
+    color:  rgb(87, 87, 87);
+    font-size:  33px;
+	font: 13pt &quot;Comic Sans MS&quot;;
+
+</string>
+    </property>
+    <property name="text">
+     <string>Z=</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="howmuch_zoom_2">
+    <property name="geometry">
+     <rect>
+      <x>1016</x>
+      <y>210</y>
+      <width>20</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+    border-radius:  10px;
+	background-color: rgb(228, 225, 230);
+
+    color:  rgb(87, 87, 87);
+    font-size:  33px;
+	font: 13pt &quot;Comic Sans MS&quot;;
+
+</string>
+    </property>
+    <property name="text">
+     <string>%</string>
+    </property>
+   </widget>
    <zorder>label_2</zorder>
    <zorder>name_button</zorder>
    <zorder>name_display</zorder>
@@ -1200,7 +1314,7 @@ QPushButton:pressed {
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>x_spin_is_2</zorder>
-   <zorder>parall_type_3</zorder>
+   <zorder>solid</zorder>
    <zorder>x_spin_is_4</zorder>
    <zorder>thick</zorder>
    <zorder>is_round</zorder>
@@ -1211,10 +1325,14 @@ QPushButton:pressed {
    <zorder>x_spin_is_7</zorder>
    <zorder>is_no</zorder>
    <zorder>label_7</zorder>
-   <zorder>parall_type_2</zorder>
+   <zorder>dashed</zorder>
    <zorder>Edges_colour</zorder>
    <zorder>vert_colour</zorder>
    <zorder>back_colour</zorder>
+   <zorder>x_spin_is_3</zorder>
+   <zorder>x_spin_is_5</zorder>
+   <zorder>x_spin_is_8</zorder>
+   <zorder>howmuch_zoom_2</zorder>
   </widget>
  </widget>
  <customwidgets>
@@ -1228,7 +1346,7 @@ QPushButton:pressed {
  <connections/>
  <buttongroups>
   <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup"/>
  </buttongroups>
 </ui>

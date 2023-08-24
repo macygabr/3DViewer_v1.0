@@ -22,7 +22,7 @@ class draw : public QOpenGLWidget {
   void resizeGL(int w, int h);
   void paintGL();
   void displayVertices();
-
+void displayLines() ;
   dataNur test;
   char *file_name;
   int lastState;
@@ -33,8 +33,10 @@ class draw : public QOpenGLWidget {
   int sizeH = 0;
   int sizeW = 0;
 
-//  double versh[9];
-//  int lin [6];
+  // nurlan use next:
+  int  zoom = 0;
+  int firstOpen =0;
+  // dont touch
 
   double translation[3];
   double rotation[3];
