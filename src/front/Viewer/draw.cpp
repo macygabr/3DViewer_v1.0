@@ -37,8 +37,8 @@ draw::draw(QWidget *parent) : QOpenGLWidget(parent)
 
       scale = 1.0;
 
-      typeVertices = 0;
-      typeLines = 0;
+      typeVertices = 1;
+      typeLines = 1;
 
       sizeVertices = 10.0;
       sizeLines = 1.0;
@@ -80,21 +80,21 @@ void draw::paintGL(){
     glClear(GL_COLOR_BUFFER_BIT);
 
 
-//    glEnableVertexAttribArray(0);
-//    glEnableClientState(GL_VERTEX_ARRAY);
-
-
-//    displayVertices();
-//    displayLines();
-
-//    glDisableClientState(GL_VERTEX_ARRAY);
-//    glDisableVertexAttribArray(0);
-
-
-
+    glEnableVertexAttribArray(0);
     glEnableClientState(GL_VERTEX_ARRAY);
-    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
-    glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,test.facetsArr);
+
+
+    displayVertices();
+    displayLines();
+
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableVertexAttribArray(0);
+
+
+
+//    glEnableClientState(GL_VERTEX_ARRAY);
+//    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
+//    glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,test.facetsArr);
 
 }
 

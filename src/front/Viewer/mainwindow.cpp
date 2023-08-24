@@ -51,8 +51,8 @@ void MainWindow::clean() {
   ui->spin_z->setValue(0);
   ui->zoom->setValue(100);
   ui->central_type->setChecked(true);
-  ui->is_no->setChecked(true);
-  ui->solid->setChecked(true);
+  ui->is_round->setChecked(true);
+  ui->dashed->setChecked(true);
 }
 
 void MainWindow::on_screenshot_clicked() {
@@ -202,48 +202,55 @@ void MainWindow::on_central_type_clicked()
 void MainWindow::on_parall_type_clicked()
 {
     ui->openGLWidget->projection=1;
-
+    ui->openGLWidget->update();
 }
 
 
 void MainWindow::on_solid_clicked()
 {
     ui->openGLWidget->typeLines=0;
+    ui->openGLWidget->update();
 }
 
 
 void MainWindow::on_dashed_clicked()
 {
     ui->openGLWidget->typeLines=1;
+    ui->openGLWidget->update();
 }
 
 
 void MainWindow::on_is_no_clicked()
 {
     ui->openGLWidget->typeVertices=0;
+    ui->openGLWidget->update();
 }
 
 
 void MainWindow::on_is_square_clicked()
 {
-    ui->openGLWidget->typeVertices=1;
+    ui->openGLWidget->typeVertices=2;
+    ui->openGLWidget->update();
 }
 
 
 void MainWindow::on_is_round_clicked()
 {
-    ui->openGLWidget->typeVertices=2;
+    ui->openGLWidget->typeVertices=1;
+    ui->openGLWidget->update();
 }
 
 
 void MainWindow::on_thick_valueChanged(int value)
 {
     ui->openGLWidget->sizeLines=value;
+    ui->openGLWidget->update();
 }
 
 
 void MainWindow::on_size_valueChanged(int value)
 {
     ui->openGLWidget->sizeVertices=value;
+    ui->openGLWidget->update();
 }
 
