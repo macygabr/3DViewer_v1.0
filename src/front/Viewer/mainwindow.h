@@ -32,6 +32,7 @@ public:
     void Quit();
 
 private slots:
+    void clean ();
     void on_name_button_clicked();
     void on_screenshot_clicked();
     void on_gif_clicked();

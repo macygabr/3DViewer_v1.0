@@ -35,7 +35,21 @@ void MainWindow::on_name_button_clicked()
             ui->openGLWidget->file_name=file_way;
             readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
             nurlanization(&ui->openGLWidget->test);
+            clean();
       }
+}
+
+void MainWindow::clean(){
+    ui->change_x->setValue(0);
+     ui->change_y->setValue(0);
+      ui->change_z->setValue(0);
+      ui->spin_x->setValue(0);
+      ui->spin_y->setValue(0);
+      ui->spin_z->setValue(0);
+      ui->zoom->setValue(100);
+      ui->central_type->setChecked(true);
+      ui->is_no->setChecked(true);
+      ui->solid->setChecked(true);
 }
 
 void MainWindow::on_screenshot_clicked()
