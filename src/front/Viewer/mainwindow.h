@@ -6,10 +6,10 @@
 
 #include "draw.h"
 
-//extern "C" {
-//#include "gif.h"
-//#include "../../back/transformations.h"
-//}
+// extern "C" {
+// #include "gif.h"
+// #include "../../back/transformations.h"
+// }
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,39 +19,38 @@ class MainWindow;  //
 
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+class MainWindow : public QMainWindow {
+  Q_OBJECT
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-//    void SaveState(const QColor &backc);
-//    void RestoreState(QColor &backc);
-    void start();
-    void Quit();
+ public:
+  MainWindow(QWidget *parent = nullptr);
+  ~MainWindow();
+  //    void SaveState(const QColor &backc);
+  //    void RestoreState(QColor &backc);
+  void start();  //
+  void Quit();   //
 
-private slots:
-    void clean ();
-    void on_name_button_clicked();
-    void on_screenshot_clicked();
-    void on_gif_clicked();
-    void on_change_y_valueChanged(int value);
-    void on_change_x_valueChanged(int value);
-    void on_zoom_valueChanged(int value);
-    void on_spin_x_valueChanged(int value);
-    void on_spin_y_valueChanged(int value);
-    void on_spin_z_valueChanged(int value);
+ private slots:
+  void clean();                              //
+  void on_name_button_clicked();             //
+  void on_screenshot_clicked();              //
+  void on_gif_clicked();                     //
+  void on_change_y_valueChanged(int value);  //
+  void on_change_x_valueChanged(int value);  //
+  void on_zoom_valueChanged(int value);      //
+  void on_spin_x_valueChanged(int value);    //
+  void on_spin_y_valueChanged(int value);    //
+  void on_spin_z_valueChanged(int value);    //
 
-    void on_back_colour_clicked();
+  void on_back_colour_clicked();  //
 
-    void on_change_z_valueChanged(int arg1);
+  void on_change_z_valueChanged(int arg1);  //
 
-    void on_zoom_sliderReleased();
+  void on_vert_colour_clicked();  //
 
-    void on_openGLWidget_aboutToCompose();
+  void on_Edges_colour_clicked();  //
 
-private:
-    Ui::MainWindow *ui;
+ private:
+  Ui::MainWindow *ui;
 };
 #endif  // MAINWINDOW_H
