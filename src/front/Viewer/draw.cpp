@@ -93,7 +93,7 @@ void draw::paintGL(){
 //    dataNur test;
 //    readFile(file_name, &test);
 
-     scalingObj(&test,  scale);
+//    scalingObj(&test,  scale);
 
     glEnableClientState(GL_VERTEX_ARRAY);
     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);

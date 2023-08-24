@@ -34,6 +34,7 @@ void MainWindow::on_name_button_clicked()
             ui->name_display->setText(file_way);
             ui->openGLWidget->file_name=file_way;
             readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
+            nurlanization(&ui->openGLWidget->test);
       }
 }
 
@@ -98,10 +99,10 @@ void MainWindow::on_change_x_valueChanged(int value)
 
 void MainWindow::on_zoom_valueChanged(int value)
 {
-//    scalingObj(&ui->openGLWidget->test,value);
-     ui->openGLWidget->scale=value/100.0;
+    scalingObj(&ui->openGLWidget->test,(value - ui->howmuch_zoom->text().toDouble()));
+//     ui->openGLWidget->scale=value/100.0;
      ui->openGLWidget->update();
-     ui->howmuch_zoom->setText(QString::number(value)+"%");
+     ui->howmuch_zoom->setText(QString::number(value));
 }
 void MainWindow::on_zoom_sliderReleased()
 {

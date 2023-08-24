@@ -18,4 +18,5 @@ int countSize(FILE* fp, dataNur* outputdata);
 int rotateObj(dataNur* inputdata, double degree, char axis); /**< Поворот объекта вокруг оси */
 int scalingObj(dataNur* inputdata, double scale); /**< Изменение массштаба */
 int shiftObj(dataNur* inputdata, int shift, char axis); /**< Сдвиг объекта вдоль оси */
+int nurlanization(dataNur* inputdata);
 #endif

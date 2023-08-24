@@ -38,6 +38,9 @@ int rotateObj(dataNur* inputdata, double degree, char axis) {
 }
 
 int scalingObj(dataNur* inputdata, double scale) {
+  scale /= 100.0;
+  if (scale >= 0) scale += 1;
+  if (scale < 0) scale = 1 + scale;
   for (int i = 0; i < inputdata->count_of_vertexes; i++)
     inputdata->vertexesArr[i] *= scale;
   return scale > 0 ? 0 : 1;
@@ -62,4 +65,18 @@ int shiftObj(dataNur* inputdata, int shift, char axis) {
   for (int i = 0; i < inputdata->count_of_vertexes; i += 3)
     inputdata->vertexesArr[i + add] += shift;
   return error;
+}
+
+int nurlanization(dataNur* inputdata) {
+  if (!inputdata) return 1;
+  double max = inputdata->vertexesArr[0];
+  for (int i = 0; i < inputdata->count_of_vertexes; i++) {
+    if (inputdata->vertexesArr[i] > max) max = inputdata->vertexesArr[i];
+  }
+
+  for (int i = 0; i < inputdata->count_of_vertexes; i++) {
+    inputdata->vertexesArr[i] /= max;
+    inputdata->vertexesArr[i] *= 0.5;
+  }
+  return 0;
 }
