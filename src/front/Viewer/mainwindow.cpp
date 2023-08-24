@@ -192,3 +192,58 @@ void MainWindow::on_change_z_valueChanged(int arg1) {
   ui->openGLWidget->translation[2] = arg1;
   ui->openGLWidget->update();
 }
+
+void MainWindow::on_central_type_clicked()
+{
+    ui->openGLWidget->projection=0;
+}
+
+
+void MainWindow::on_parall_type_clicked()
+{
+    ui->openGLWidget->projection=1;
+
+}
+
+
+void MainWindow::on_solid_clicked()
+{
+    ui->openGLWidget->typeLines=0;
+}
+
+
+void MainWindow::on_dashed_clicked()
+{
+    ui->openGLWidget->typeLines=1;
+}
+
+
+void MainWindow::on_is_no_clicked()
+{
+    ui->openGLWidget->typeVertices=0;
+}
+
+
+void MainWindow::on_is_square_clicked()
+{
+    ui->openGLWidget->typeVertices=1;
+}
+
+
+void MainWindow::on_is_round_clicked()
+{
+    ui->openGLWidget->typeVertices=2;
+}
+
+
+void MainWindow::on_thick_valueChanged(int value)
+{
+    ui->openGLWidget->sizeLines=value;
+}
+
+
+void MainWindow::on_size_valueChanged(int value)
+{
+    ui->openGLWidget->sizeVertices=value;
+}
+

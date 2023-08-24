@@ -50,7 +50,25 @@ class MainWindow : public QMainWindow {
 
   void on_Edges_colour_clicked();  //
 
- private:
+  void on_central_type_clicked();
+
+  void on_parall_type_clicked();
+
+  void on_solid_clicked();
+
+  void on_dashed_clicked();
+
+  void on_is_no_clicked();
+
+  void on_is_square_clicked();
+
+  void on_is_round_clicked();
+
+  void on_thick_valueChanged(int value);
+
+  void on_size_valueChanged(int value);
+
+private:
   Ui::MainWindow *ui;
 };
 #endif  // MAINWINDOW_H
