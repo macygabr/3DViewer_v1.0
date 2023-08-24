@@ -44,16 +44,17 @@ int parsVertexes(dataNur* outputdata, int* vertexesNum, char* buffer) {
 }
 
 int parsFacets(dataNur* outputdata, int* facetsNum, char* buffer) {
-  int first = 0;
-  int block = 0;
-  for (int i = 1; buffer[i] != '\n' && buffer[i] != '\0'; i++) {
-    if (buffer[i - 1] == ' ') {
-      outputdata->facetsArr[++(*facetsNum)] = (int)(buffer[i] - '0');
-      if (first) outputdata->facetsArr[++(*facetsNum)] = (int)(buffer[i] - '0');
-      if (!first) first = (int)(buffer[i] - '0');
+  int flag = 0, first = 0;
+  for (char* start = buffer, *end = start; *start && *start != '\n' && *start != '\0' && *start != EOF; start++) {
+    while ((*start > '9' || *start < '0') && *start) start++;
+
+    if (*(start - 1) == ' ' && *start) {
+      outputdata->facetsArr[++(*facetsNum)] = ((int)strtol(start, &end,10)) - 1;
+      if (flag) outputdata->facetsArr[++(*facetsNum)] = ((int)strtol(start, &end,10)) - 1;
+      if (!flag++) first = outputdata->facetsArr[(*facetsNum)];
+      start = end;
     }
   }
-
   outputdata->facetsArr[++(*facetsNum)] = first;
   return 0;
 }
@@ -70,14 +71,13 @@ double makeNum(char* content, int* i) {
     if (content[(*i)] == '.') {
       flag = j;
       dot++;
-    }
-    if (content[(*i)] >= '0' && content[(*i)] <= '9') {
+    } else if (content[(*i)] >= '0' && content[(*i)] <= '9') {
       j++;
       res += (double)(content[(*i)] - '0') / ((int)pow(10, j));
-    }
-    if (content[(*i)] == '-') {
+    } else if (content[(*i)] == '-') {
       minus = 1;
-    }
+    } else
+      break;
   }
   if (!flag) flag = j;
   res *= pow(10, (flag));
@@ -91,11 +91,13 @@ int countSize(FILE* fp, dataNur* outputdata) {
   while (getline(&line, &len, fp) != -1) {
     if (line[0] == 'v' && line[1] == ' ')
       for (int i = 1; i < strlen(line); i++)
-        if (line[i] == ' ') outputdata->count_of_vertexes++;
+        if (line[i - 1] == ' ' && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
+          outputdata->count_of_vertexes++;
 
     if (line[0] == 'f' && line[1] == ' ')
       for (int i = 1; i < strlen(line); i++)
-        if (line[i] == ' ') outputdata->count_of_facets++;
+        if (line[i - 1] == ' ' && line[i] >= '0' && line[i] <= '9')
+          outputdata->count_of_facets++;
   }
   rewind(fp);
   free(line);

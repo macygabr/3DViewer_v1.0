@@ -9,8 +9,8 @@ int main() {
   char *filename =
       "/Users/macygabr/Project/C8_3DViewer_v1.0-1/src/back/tests/cube.obj";
   readFile(filename, &outputdata);
-  scalingObj(&outputdata, 1);
-  rotateObj(&outputdata,1,'y');
+  // scalingObj(&outputdata, 1);
+  // rotateObj(&outputdata,1,'y');
 
   for (int index = 0, j = 1; index < outputdata.count_of_vertexes;
        index++, j++) {
@@ -20,9 +20,9 @@ int main() {
       j = 0;
     }
   }
-
-  for (int index = 0, j = 1; index < outputdata.count_of_facets;
-       index++, j++) {
+  printf(
+      "polygon:__________________________________________________________\n");
+  for (int index = 0, j = 1; index < outputdata.count_of_facets; index++, j++) {
     printf("%d", outputdata.facetsArr[index]);
     if (!(j % 2)) printf(" ");
     if (j == 6) {
