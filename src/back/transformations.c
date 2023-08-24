@@ -46,7 +46,8 @@ int scalingObj(dataNur* inputdata, double scale) {
   return scale > 0 ? 0 : 1;
 }
 
-int shiftObj(dataNur* inputdata, int shift, char axis) {
+int shiftObj(dataNur* inputdata, double shift, char axis) {
+  shift/=100.0;
   int error = 0, add = 0;
   switch (axis) {
     case 'x':

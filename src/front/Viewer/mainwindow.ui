@@ -420,7 +420,7 @@ QPushButton:pressed {
 </string>
     </property>
     <property name="text">
-     <string>X = 0°</string>
+     <string>0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -447,7 +447,7 @@ QPushButton:pressed {
 </string>
     </property>
     <property name="text">
-     <string>Y = 0°</string>
+     <string>0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -474,7 +474,7 @@ QPushButton:pressed {
 </string>
     </property>
     <property name="text">
-     <string>Z = 0°</string>
+     <string>0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

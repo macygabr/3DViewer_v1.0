@@ -88,12 +88,18 @@ void MainWindow::on_gif_clicked()
 
 
 void MainWindow::on_change_y_valueChanged(int value)
-{ui->openGLWidget->translation[1]=value;
+{
+//    ui->openGLWidget->translation[1]=value;
+    shiftObj(&ui->openGLWidget->test,value - ui->howmuch_y->text().toDouble(),'y');
+    ui->openGLWidget->update();
     ui->howmuch_y->setText(QString::number(value));
 }
 
 void MainWindow::on_change_x_valueChanged(int value)
-{ ui->openGLWidget->translation[0]=value;
+{
+//    ui->openGLWidget->translation[0]=value;
+    shiftObj(&ui->openGLWidget->test,value - ui->howmuch_x->text().toDouble(),'x');
+    ui->openGLWidget->update();
     ui->howmuch_x->setText(QString::number(value));
 }
 
