@@ -29,7 +29,6 @@ void MainWindow::on_name_button_clicked() {
     char *file_way = new char(fileName.length());
     QByteArray barr = fileName.toLatin1();
     strlcpy(file_way, barr, fileName.length() + 1);
-    ui->name_display->setText(file_way);
     ui->openGLWidget->file_name = file_way;
     readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
     ui->num_edges->setText(

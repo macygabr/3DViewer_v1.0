@@ -22,7 +22,7 @@ class draw : public QOpenGLWidget {
   void resizeGL(int w, int h);
   void paintGL();
   void displayVertices();
-
+void displayLines() ;
   dataNur test;
   char *file_name;
   int lastState;
