@@ -6,8 +6,9 @@
 #include <string.h>
 
 int rotateObj(dataNur* inputdata, double degree, char axis) {
-  degree *= 2.0 * 3.1415;
   int add1 = 0, add2 = 0, error = 0;
+  degree *= M_PI / 180.0;
+  // degree *= M_PI;
   switch (axis) {
     case 'x':
       add1 = 1;
@@ -38,16 +39,13 @@ int rotateObj(dataNur* inputdata, double degree, char axis) {
 }
 
 int scalingObj(dataNur* inputdata, double scale) {
-  scale /= 100.0;
-  if (scale >= 0) scale += 1;
-  if (scale < 0) scale = 1 + scale;
   for (int i = 0; i < inputdata->count_of_vertexes; i++)
     inputdata->vertexesArr[i] *= scale;
   return scale > 0 ? 0 : 1;
 }
 
 int shiftObj(dataNur* inputdata, double shift, char axis) {
-  shift/=100.0;
+  shift /= 100.0;
   int error = 0, add = 0;
   switch (axis) {
     case 'x':

@@ -9,8 +9,8 @@ int main() {
   char *filename =
       "back/tests/cube.obj";
   readFile(filename, &outputdata);
-  // scalingObj(&outputdata, 1);
-  // rotateObj(&outputdata,1,'y');
+  scalingObj(&outputdata, 1);
+  rotateObj(&outputdata,26.0,'y');
 
   for (int index = 0, j = 1; index < outputdata.count_of_vertexes;
        index++, j++) {
@@ -33,7 +33,6 @@ int main() {
 
   printf("вершины = %d\nполигоны = %d", outputdata.count_of_vertexes,
          outputdata.count_of_facets);
-
   free(outputdata.vertexesArr);
   free(outputdata.facetsArr);
   return 0;

@@ -105,7 +105,7 @@ void MainWindow::on_change_x_valueChanged(int value)
 
 void MainWindow::on_zoom_valueChanged(int value)
 {
-    scalingObj(&ui->openGLWidget->test,(value - ui->howmuch_zoom->text().toDouble()));
+    scalingObj(&ui->openGLWidget->test,(((double)value)/ui->howmuch_zoom->text().toDouble()));
 //     ui->openGLWidget->scale=value/100.0;
      ui->openGLWidget->update();
      ui->howmuch_zoom->setText(QString::number(value));
@@ -118,21 +118,21 @@ void MainWindow::on_zoom_sliderReleased()
 
 void MainWindow::on_spin_x_valueChanged(int value)
 {
-    rotateObj(&ui->openGLWidget->test,(value - ui->x_spin_is->text().toInt())*90,'x');
+    rotateObj(&ui->openGLWidget->test,(value - ui->x_spin_is->text().toInt()),'x');
     ui->x_spin_is->setText(QString::number(value));
     ui->openGLWidget->update();
 }
 
 void MainWindow::on_spin_y_valueChanged(int value)
 {
-     rotateObj(&ui->openGLWidget->test,(value - ui->y_spin_is->text().toInt())*90,'y');
+     rotateObj(&ui->openGLWidget->test,(value - ui->y_spin_is->text().toInt()),'y');
      ui->y_spin_is->setText(QString::number(value));
      ui->openGLWidget->update();
 }
 
 void MainWindow::on_spin_z_valueChanged(int value)
 {
-    rotateObj(&ui->openGLWidget->test,(value - ui->z_spin_is->text().toInt())*90,'z');
+    rotateObj(&ui->openGLWidget->test,(value - ui->z_spin_is->text().toInt()),'z');
     ui->z_spin_is->setText(QString::number(value));
     ui->openGLWidget->update();
 }

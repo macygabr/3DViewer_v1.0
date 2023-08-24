@@ -21,8 +21,8 @@ double makeNum(char* content,
 int countSize(FILE* fp, dataNur* outputdata);
 int rotateObj(dataNur* inputdata, double degree,
               char axis); /**< Поворот объекта вокруг оси */
-int scalingObj(dataNur* inputdata, double scale); /**< Изменение массштаба */
+int scalingObj(dataNur* inputdata, double scale); /**< Изменение масштаба */
 int shiftObj(dataNur* inputdata, double shift,
              char axis); /**< Сдвиг объекта вдоль оси */
-int nurlanization(dataNur* inputdata); /**< Нормализация массштаба объекта */
+int nurlanization(dataNur* inputdata); /**< Нормализация масштаба объекта */
 #endif
