@@ -125,7 +125,7 @@ void MainWindow::on_spin_y_valueChanged(int value)
 
 void MainWindow::on_spin_z_valueChanged(int value)
 {
-    rotateObj(&ui->openGLWidget->test,(value - ui->z_spin_is->text().toInt())*100,'z');
+    rotateObj(&ui->openGLWidget->test,(value - ui->z_spin_is->text().toInt())*90,'z');
     ui->z_spin_is->setText(QString::number(value));
     ui->openGLWidget->update();
 }
