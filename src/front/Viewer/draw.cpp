@@ -6,52 +6,40 @@ extern "C" {
 #include "../../back/transformations.h"
 }
 
-draw::draw(QWidget *parent) : QOpenGLWidget(parent) {
-  //    versh[0]=0.0;
-  //       versh[1]=0;
-  //       versh[2]=0;
-  //       versh[3]=0;
-  //       versh[4]=0;
-  //       versh[5]=1;
-  //       versh[6]=1;
-  //       versh[7]=0;
-  //       versh[8]=0;
-  //     lin [0] =0;
-  //     lin [1] =1;
-  //     lin [2] =1;
-  //     lin [3]=2;
-  //     lin [4]=2;
-  //     lin [5]=0;
+draw::draw(QWidget *parent) : QOpenGLWidget(parent)
+{
 
-  rotation[0] = 0.0;
-  rotation[1] = 0.0;
-  rotation[2] = 0.0;
+      rotation[0] = 0.0;
+      rotation[1] = 0.0;
+      rotation[2] = 0.0;
 
-  translation[0] = 0.0;
-  translation[1] = 0.0;
-  translation[2] = 0.0;
+      translation[0] = 0.0;
+      translation[1] = 0.0;
+      translation[2] = 0.0;
 
-  scale = 1.0;
+      scale = 1.0;
 
-  typeVertices = 1;
-  typeLines = 1;
+      typeVertices = 0;
+      typeLines = 1;
 
-  sizeVertices = 10.0;
-  sizeLines = 1.0;
+      sizeVertices = 10.0;
+      sizeLines = 1.0;
 
-  projection = 1;
+      projection = 1;
 
-  colorVertices.setRedF(1.0f);
-  colorVertices.setGreenF(0.0f);
-  colorVertices.setBlueF(1.0f);
 
-  colorLines.setRedF(1.0f);
-  colorLines.setGreenF(1.0f);
-  colorLines.setBlueF(1.0f);
+      colorVertices.setRedF(1.0f);
+      colorVertices.setGreenF(0.0f);
+      colorVertices.setBlueF(1.0f);
 
-  colorBackground.setRedF(0.0f);
-  colorBackground.setGreenF(0.0f);
-  colorBackground.setBlueF(0.0f);
+      colorLines.setRedF(1.0f);
+      colorLines.setGreenF(1.0f);
+      colorLines.setBlueF(1.0f);
+
+      colorBackground.setRedF(0.0f);
+      colorBackground.setGreenF(0.0f);
+      colorBackground.setBlueF(0.0f);
+
 }
 
 draw::~draw() {}

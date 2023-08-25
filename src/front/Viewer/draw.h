@@ -36,15 +36,16 @@ class draw : public QOpenGLWidget {
       1;  // наличие ошибок, изначально, до открытия файла считаем что есть
   // dont touch
 
-  double translation[3];
-  int rotation[3];
-  double scale;
+  double translation[3] = {0, 0, 0};
+  int rotation[3] = {0, 0, 0};
 
-  int typeVertices;
-  int typeLines = 0;  // исходный тип линии (классический)
+  double scale = 100.0;
 
-  int sizeVertices;
-  int sizeLines;
+  int typeVertices = 1;
+  int typeLines = 1;
+
+  int sizeVertices = 10;
+  int sizeLines = 1;
 
   QColor colorVertices;
   QColor colorLines;
