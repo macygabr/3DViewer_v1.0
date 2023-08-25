@@ -13,15 +13,13 @@ SOURCES += \
     ../../back/transformations.c \
     draw.cpp \
     main.cpp \
-    mainwindow.cpp \
-    mainwindowstate.cpp
+    mainwindow.cpp
 
 HEADERS += \
     ../../back/transformations.h \
     draw.h \
     gif.h \
-    mainwindow.h \
-    mainwindowstate.h
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui

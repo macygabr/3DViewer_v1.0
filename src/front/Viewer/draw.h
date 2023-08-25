@@ -38,6 +38,7 @@ void displayLines() ;
   int firstOpen = 0; // было ли это открыте файла в первый раз
   int projection = 0; // включена ли центральная проекция
   int lastValueZ = 0; //предыдущее значение координаты по z
+  int error = 1; // наличие ошибок, изначально, до открытия файла считаем что есть
   // dont touch
 
   double translation[3];

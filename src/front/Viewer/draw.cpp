@@ -78,7 +78,7 @@ void draw::paintGL(){
     glClearColor(colorBackground.redF(), colorBackground.greenF(), colorBackground.blueF(), 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glMatrixMode(GL_PROJECTION);
+    glMatrixMode(GL_PROJECTION); // тип отрисовки
     glLoadIdentity();
     if(!projection){
         float winHeight = 0.5;
@@ -92,9 +92,10 @@ void draw::paintGL(){
     glEnableVertexAttribArray(0);
     glEnableClientState(GL_VERTEX_ARRAY);
 
-
-    displayVertices();
-    displayLines();
+    if(!error){ // только если нет ошибок
+        displayVertices();
+        displayLines();
+    }
 
     glDisableClientState(GL_VERTEX_ARRAY);
     glDisableVertexAttribArray(0);
@@ -104,7 +105,6 @@ void draw::paintGL(){
 //    glEnableClientState(GL_VERTEX_ARRAY);
 //    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
 //    glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,test.facetsArr);
-
 }
 
 void draw::displayVertices() {
@@ -115,9 +115,9 @@ void draw::displayVertices() {
     glDisable(GL_POINT_SMOOTH);
     glEnable(GL_POINT_SPRITE);
   }
-  if (typeVertices != 0) {
-    glColor3f(colorVertices.redF(), colorVertices.greenF(),
-              colorVertices.blueF());
+
+  if (typeVertices) {
+    glColor3f(colorVertices.redF(), colorVertices.greenF(),colorVertices.blueF());
     glPointSize(sizeVertices);
      glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
 //    glVertexPointer(3, GL_DOUBLE, 0, model.vertices);

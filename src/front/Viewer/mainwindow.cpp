@@ -17,7 +17,9 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 MainWindow::~MainWindow() {
-  Quit();
+  free(ui->openGLWidget->test.facetsArr);
+  free(ui->openGLWidget->test.vertexesArr);
+  Quit(); // внутри точно ошибка
   delete ui;
 }
 
@@ -25,13 +27,20 @@ void MainWindow::on_name_button_clicked() {
   QString fileName =
       QFileDialog::getOpenFileName(this, "Open a file", "/Users", "*.obj");
   if (fileName != "") {
-        clean();
-    ui->name_display->setText(" " + fileName.split('/').last());
-    char *file_way = new char(fileName.length());
-    QByteArray barr = fileName.toLatin1();
-    strlcpy(file_way, barr, fileName.length() + 1);
-    ui->openGLWidget->file_name = file_way;
-    if(!readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test)){
+//    ui->name_display->setText(" " + fileName.split('/').last());
+//    char *file_way = new char(fileName.length());
+//    QByteArray barr = fileName.toLatin1();
+//    strlcpy(file_way, barr, fileName.length() + 1);
+//    ui->openGLWidget->file_name = file_way;
+    //_____________________________________________________
+
+     std::string str_expr = fileName.toStdString();
+     char *file_way = (char *)str_expr.c_str();
+     ui->openGLWidget->file_name = file_way;
+     clean();
+    //_____________________________________________________
+    ui->openGLWidget->error = readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
+    if(!ui->openGLWidget->error){
         ui->num_edges->setText(" Number of edges: " +QString::number(ui->openGLWidget->test.count_of_facets/6));
         ui->num_vert->setText( " Number of vertices: "+QString::number(ui->openGLWidget->test.count_of_vertexes/3));
         nurlanization(&ui->openGLWidget->test);
@@ -51,6 +60,7 @@ void MainWindow::clean() {
   ui->parall_type->setChecked(true); // чекбокс включен
   ui->is_round->setChecked(true);
   ui->dashed->setChecked(true);
+
 }
 
 void MainWindow::on_screenshot_clicked() {
@@ -167,12 +177,12 @@ void MainWindow::start() {
   QString temp = QCoreApplication::applicationDirPath();
   QSettings settings(temp + "/settings.ini", QSettings::IniFormat);
 
-  settings.beginGroup("Settings");
+  settings.beginGroup("Settings"); // начало списака начальных настроек
 
   ui->openGLWidget->colorBackground =
-      settings.value("colorBackground", QColor(Qt::black)).value<QColor>();
+  settings.value("colorBackground", QColor(Qt::black)).value<QColor>();
 
-  settings.endGroup();
+  settings.endGroup(); // конец
 
   ui->openGLWidget->update();
 }

@@ -9,6 +9,11 @@ int main() {
   int error =0;
   char *filename = "back/tests/cube.obj";
   error = readFile(filename, &outputdata);
+  error = readFile(filename, &outputdata);
+  error = readFile(filename, &outputdata);
+  error = readFile(filename, &outputdata);
+  error = readFile(filename, &outputdata);
+  error = readFile(filename, &outputdata);
   scalingObj(&outputdata, 10);
   rotateObj(&outputdata, 90, 'y');
 
