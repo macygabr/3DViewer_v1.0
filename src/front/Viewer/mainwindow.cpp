@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() {
   free(ui->openGLWidget->test.facetsArr);
   free(ui->openGLWidget->test.vertexesArr);
-  Quit(); // внутри точно ошибка
+  Quit();  // внутри точно ошибка
   delete ui;
 }
 
@@ -28,22 +28,27 @@ void MainWindow::on_name_button_clicked() {
       QFileDialog::getOpenFileName(this, "Open a file", "/Users", "*.obj");
   if (fileName != "") {
     ui->name_display->setText(" " + fileName.split('/').last());
-//    char *file_way = new char(fileName.length());
-//    QByteArray barr = fileName.toLatin1();
-//    strlcpy(file_way, barr, fileName.length() + 1);
-//    ui->openGLWidget->file_name = file_way;
+    //    char *file_way = new char(fileName.length());
+    //    QByteArray barr = fileName.toLatin1();
+    //    strlcpy(file_way, barr, fileName.length() + 1);
+    //    ui->openGLWidget->file_name = file_way;
     //_____________________________________________________
 
-     std::string str_expr = fileName.toStdString();
-     char *file_way = (char *)str_expr.c_str();
-     ui->openGLWidget->file_name = file_way;
-//     clean();
+    std::string str_expr = fileName.toStdString();
+    char *file_way = (char *)str_expr.c_str();
+    ui->openGLWidget->file_name = file_way;
+    //     clean();
     //_____________________________________________________
-    ui->openGLWidget->error = readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
-    if(!ui->openGLWidget->error){
-        ui->num_edges->setText(" Number of edges: " +QString::number(ui->openGLWidget->test.count_of_facets/6));
-        ui->num_vert->setText( " Number of vertices: "+QString::number(ui->openGLWidget->test.count_of_vertexes/3));
-        nurlanization(&ui->openGLWidget->test);
+    ui->openGLWidget->error =
+        readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
+    if (!ui->openGLWidget->error) {
+      ui->num_edges->setText(
+          " Number of edges: " +
+          QString::number(ui->openGLWidget->test.count_of_facets / 6));
+      ui->num_vert->setText(
+          " Number of vertices: " +
+          QString::number(ui->openGLWidget->test.count_of_vertexes / 3));
+      nurlanization(&ui->openGLWidget->test);
     }
   }
 }
@@ -118,7 +123,7 @@ void MainWindow::on_gif_clicked() {
 }
 
 void MainWindow::on_change_x_valueChanged(int value) {  // смещение по x
-  shiftObj(&ui->openGLWidget->test, value -  ui->openGLWidget->translation[0],
+  shiftObj(&ui->openGLWidget->test, value - ui->openGLWidget->translation[0],
            'x');
   ui->openGLWidget->update();
   ui->openGLWidget->translation[0] = value;  // сохранение в масив
@@ -134,7 +139,8 @@ void MainWindow::on_change_y_valueChanged(int value) {  // смещение по
 }
 
 void MainWindow::on_change_z_valueChanged(int value) {  // смещение по z
-  shiftObj(&ui->openGLWidget->test, value - ui->openGLWidget->translation[2], 'z');
+  shiftObj(&ui->openGLWidget->test, value - ui->openGLWidget->translation[2],
+           'z');
   ui->openGLWidget->translation[2] = value;  // сохранение в масив
   ui->openGLWidget->lastValueZ = value;
   ui->openGLWidget->update();
@@ -195,10 +201,10 @@ void MainWindow::start() {
   QString temp = QCoreApplication::applicationDirPath();
   QSettings settings(temp + "/settings.ini", QSettings::IniFormat);
 
-  settings.beginGroup("Settings"); // начало списака начальных настроек
+  settings.beginGroup("Settings");  // начало списака начальных настроек
 
   ui->openGLWidget->colorBackground =
-  settings.value("colorBackground", QColor(Qt::black)).value<QColor>();
+      settings.value("colorBackground", QColor(Qt::black)).value<QColor>();
 
   ui->openGLWidget->colorLines =
       settings.value("colorLines", QColor(Qt::white)).value<QColor>();
@@ -208,11 +214,13 @@ void MainWindow::start() {
 
   ui->openGLWidget->sizeLines = settings.value("sizeLines", 1.0).value<int>();
 
-  ui->openGLWidget->sizeVertices = settings.value("sizeVertices", 10.0).value<int>();
+  ui->openGLWidget->sizeVertices =
+      settings.value("sizeVertices", 10.0).value<int>();
 
   ui->openGLWidget->typeLines = settings.value("typeLines", 0).value<int>();
 
-  ui->openGLWidget->typeVertices = settings.value("typeVertices", 1).value<int>();
+  ui->openGLWidget->typeVertices =
+      settings.value("typeVertices", 1).value<int>();
 
   ui->openGLWidget->scale = settings.value("scale", 100).value<double>();
 
@@ -220,49 +228,47 @@ void MainWindow::start() {
   ui->openGLWidget->rotation[1] = settings.value("rotation1", 0.0).value<int>();
   ui->openGLWidget->rotation[2] = settings.value("rotation2", 0.0).value<int>();
 
-  ui->openGLWidget->translation[0] = settings.value("translation0", 0.0).value<double>();
-  ui->openGLWidget->translation[1] = settings.value("translation1", 0.0).value<double>();
-  ui->openGLWidget->translation[2] = settings.value("translation2", 0.0).value<double>();
+  ui->openGLWidget->translation[0] =
+      settings.value("translation0", 0.0).value<double>();
+  ui->openGLWidget->translation[1] =
+      settings.value("translation1", 0.0).value<double>();
+  ui->openGLWidget->translation[2] =
+      settings.value("translation2", 0.0).value<double>();
 
   settings.endGroup();
 
   ui->change_x->setValue(ui->openGLWidget->translation[0]);
-  shiftObj(&ui->openGLWidget->test, 0 -  ui->openGLWidget->translation[0],
-           'x');
+  shiftObj(&ui->openGLWidget->test, 0 - ui->openGLWidget->translation[0], 'x');
   ui->change_y->setValue(ui->openGLWidget->translation[1]);
-  shiftObj(&ui->openGLWidget->test, 0 -  ui->openGLWidget->translation[0],
-           'y');
+  shiftObj(&ui->openGLWidget->test, 0 - ui->openGLWidget->translation[0], 'y');
   ui->change_z->setValue(ui->openGLWidget->translation[2]);
-  shiftObj(&ui->openGLWidget->test, 0 -  ui->openGLWidget->translation[0],
-           'z');
+  shiftObj(&ui->openGLWidget->test, 0 - ui->openGLWidget->translation[0], 'z');
 
   ui->spin_x->setValue(ui->openGLWidget->rotation[0]);
-  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]),
-            'x');
+  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]), 'x');
   ui->spin_y->setValue(ui->openGLWidget->rotation[1]);
-  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]),
-            'y');
+  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]), 'y');
   ui->spin_z->setValue(ui->openGLWidget->rotation[2]);
-  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]),
-            'z');
-  ui->zoom->setValue( ui->openGLWidget->scale);
+  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]), 'z');
+  ui->zoom->setValue(ui->openGLWidget->scale);
   scalingObj(&ui->openGLWidget->test,
              (((double)100) / ui->openGLWidget->scale));
-  if (ui->openGLWidget->projection == 1) ui->parall_type->setChecked(true);
-  else ui->central_type->setChecked(true);
+  if (ui->openGLWidget->projection == 1)
+    ui->parall_type->setChecked(true);
+  else
+    ui->central_type->setChecked(true);
 
-  if (ui->openGLWidget->typeVertices==0) ui->is_no->setChecked(true);
-  else if (ui->openGLWidget->typeVertices==1) ui->is_round->setChecked(true);
-  else ui->is_square->setChecked(true);
+  if (ui->openGLWidget->typeVertices == 0)
+    ui->is_no->setChecked(true);
+  else if (ui->openGLWidget->typeVertices == 1)
+    ui->is_round->setChecked(true);
+  else
+    ui->is_square->setChecked(true);
 
-
-  if (  ui->openGLWidget->typeLines == 1)
-  ui->dashed->setChecked(true);
-  else ui->solid->setChecked(true);
-
-
-
-
+  if (ui->openGLWidget->typeLines == 1)
+    ui->dashed->setChecked(true);
+  else
+    ui->solid->setChecked(true);
 
   ui->openGLWidget->update();
 }

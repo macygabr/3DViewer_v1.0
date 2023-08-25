@@ -70,6 +70,6 @@ int nurlanization(dataNur* inputdata) {
   double max = inputdata->vertexesArr[0];
   for (int i = 0; i < inputdata->count_of_vertexes; i++)
     if (inputdata->vertexesArr[i] > max) max = inputdata->vertexesArr[i];
-  scalingObj(inputdata, 0.5/max);
+  scalingObj(inputdata, 0.5 / max);
   return 0;
 }

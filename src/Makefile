@@ -59,7 +59,7 @@ gcov_report: clean check
 	rm *.gcda *.gcno *.o *.info
 
 clang:
-	clang-format -style="{BasedOnStyle: Google}" -n */*.c */*.h */*/*.c
+	clang-format -style="{BasedOnStyle: Google}" -n */*.c */*.h */*/*.h */*/*.c */*/*.cpp
 
 goclang:
 	clang-format -style="{BasedOnStyle: Google}" -i */*.c */*.h */*/*.c */*/*.h

@@ -6,7 +6,7 @@
 
 int main() {
   dataNur outputdata;
-  int error =0;
+  int error = 0;
   char *filename = "back/tests/cube.obj";
   error = readFile(filename, &outputdata);
   error = readFile(filename, &outputdata);
@@ -35,8 +35,8 @@ int main() {
     }
   }
 
-  printf("вершины = %d\nполигоны = %d\nошибок: %d", outputdata.count_of_vertexes,
-         outputdata.count_of_facets, error);
+  printf("вершины = %d\nполигоны = %d\nошибок: %d",
+         outputdata.count_of_vertexes, outputdata.count_of_facets, error);
   free(outputdata.vertexesArr);
   free(outputdata.facetsArr);
   return 0;

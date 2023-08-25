@@ -18,11 +18,11 @@ int readFile(char* filename, dataNur* outputdata) {
 
   if (fp != NULL) {
     error = countSize(fp, outputdata);
-      outputdata->vertexesArr =
-          (double*)calloc(outputdata->count_of_vertexes, sizeof(double));
-      outputdata->count_of_facets *= 2;
-      outputdata->facetsArr =
-          (int*)calloc(outputdata->count_of_facets, sizeof(int));
+    outputdata->vertexesArr =
+        (double*)calloc(outputdata->count_of_vertexes, sizeof(double));
+    outputdata->count_of_facets *= 2;
+    outputdata->facetsArr =
+        (int*)calloc(outputdata->count_of_facets, sizeof(int));
 
     while (!error && getline(&buffer, &len, fp) != -1) {
       if (buffer[0] == 'v' && buffer[1] == ' ')
@@ -104,7 +104,8 @@ int countSize(FILE* fp, dataNur* outputdata) {
 
     if (line[0] == 'f' && line[1] == ' ')
       for (int i = 1; i < strlen(line); i++) {
-        if (line[i - 1] == ' ' && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
+        if (line[i - 1] == ' ' &&
+            ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
           outputdata->count_of_facets++;
         if (line[i - 1] == ' ' && line[i] == '-') error = 1;
       }

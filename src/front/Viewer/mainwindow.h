@@ -68,7 +68,7 @@ class MainWindow : public QMainWindow {
 
   void on_size_valueChanged(int value);
 
-private:
+ private:
   Ui::MainWindow *ui;
 };
 #endif  // MAINWINDOW_H
