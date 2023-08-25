@@ -97,13 +97,13 @@ int countSize(FILE* fp, dataNur* outputdata) {
   size_t len = 0;
   while (getline(&line, &len, fp) != -1) {
     if (line[0] == 'v' && line[1] == ' ')
-      for (int i = 1; i < strlen(line); i++)
+      for (int i = 1; i < (int)strlen(line); i++)
         if (line[i - 1] == ' ' &&
             ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
           outputdata->count_of_vertexes++;
 
     if (line[0] == 'f' && line[1] == ' ')
-      for (int i = 1; i < strlen(line); i++) {
+      for (int i = 1; i < (int)strlen(line); i++) {
         if (line[i - 1] == ' ' &&
             ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
           outputdata->count_of_facets++;
