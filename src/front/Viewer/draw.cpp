@@ -1,74 +1,66 @@
 #include "draw.h"
+
 #include <QOpenGLFunctions>
 
 extern "C" {
 #include "../../back/transformations.h"
 }
 
-draw::draw(QWidget *parent) : QOpenGLWidget(parent)
-{
+draw::draw(QWidget *parent) : QOpenGLWidget(parent) {
+  //    versh[0]=0.0;
+  //       versh[1]=0;
+  //       versh[2]=0;
+  //       versh[3]=0;
+  //       versh[4]=0;
+  //       versh[5]=1;
+  //       versh[6]=1;
+  //       versh[7]=0;
+  //       versh[8]=0;
+  //     lin [0] =0;
+  //     lin [1] =1;
+  //     lin [2] =1;
+  //     lin [3]=2;
+  //     lin [4]=2;
+  //     lin [5]=0;
 
+  rotation[0] = 0.0;
+  rotation[1] = 0.0;
+  rotation[2] = 0.0;
 
-//    versh[0]=0.0;
-//       versh[1]=0;
-//       versh[2]=0;
-//       versh[3]=0;
-//       versh[4]=0;
-//       versh[5]=1;
-//       versh[6]=1;
-//       versh[7]=0;
-//       versh[8]=0;
-//     lin [0] =0;
-//     lin [1] =1;
-//     lin [2] =1;
-//     lin [3]=2;
-//     lin [4]=2;
-//     lin [5]=0;
+  translation[0] = 0.0;
+  translation[1] = 0.0;
+  translation[2] = 0.0;
 
+  scale = 100;
 
+  typeVertices = 1;
+  typeLines = 1;
 
-      rotation[0] = 0.0;
-      rotation[1] = 0.0;
-      rotation[2] = 0.0;
+  sizeVertices = 10.0;
+  sizeLines = 1.0;
 
-      translation[0] = 0.0;
-      translation[1] = 0.0;
-      translation[2] = 0.0;
+  projection = 1;
 
-      scale = 1.0;
+  colorVertices.setRedF(1.0f);
+  colorVertices.setGreenF(0.0f);
+  colorVertices.setBlueF(1.0f);
 
-      typeVertices = 1;
-      typeLines = 1;
+  colorLines.setRedF(1.0f);
+  colorLines.setGreenF(1.0f);
+  colorLines.setBlueF(1.0f);
 
-      sizeVertices = 10.0;
-      sizeLines = 1.0;
-
-      projection = 1;
-
-      maxSizeAxis = 1;
-
-      colorVertices.setRedF(1.0f);
-      colorVertices.setGreenF(0.0f);
-      colorVertices.setBlueF(1.0f);
-
-      colorLines.setRedF(1.0f);
-      colorLines.setGreenF(1.0f);
-      colorLines.setBlueF(1.0f);
-
-      colorBackground.setRedF(0.0f);
-      colorBackground.setGreenF(0.0f);
-      colorBackground.setBlueF(0.0f);
-
+  colorBackground.setRedF(0.0f);
+  colorBackground.setGreenF(0.0f);
+  colorBackground.setBlueF(0.0f);
 }
 
-draw::~draw() {  }
+draw::~draw() {}
 
-void draw::initializeGL(){
+void draw::initializeGL() {
+  glClearColor(colorBackground.redF(), colorBackground.greenF(),
+               colorBackground.blueF(), 1.0f);
 
-    glClearColor(colorBackground.redF(), colorBackground.greenF(), colorBackground.blueF(), 1.0f);
-
-      glEnable(GL_DEPTH);
-
+  glEnable(GL_DEPTH);
 }
 void draw ::resizeGL(int w, int h){
 
@@ -119,9 +111,9 @@ void draw::displayVertices() {
   if (typeVertices) {
     glColor3f(colorVertices.redF(), colorVertices.greenF(),colorVertices.blueF());
     glPointSize(sizeVertices);
-     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
-//    glVertexPointer(3, GL_DOUBLE, 0, model.vertices);
-    glDrawArrays(GL_POINTS, 0,  test.count_of_vertexes/3 );
+    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
+    //    glVertexPointer(3, GL_DOUBLE, 0, model.vertices);
+    glDrawArrays(GL_POINTS, 0, test.count_of_vertexes / 3);
   }
 }
 
@@ -135,7 +127,7 @@ void draw::displayLines() {
   if (typeLines != 0) {
     glColor3f(colorLines.redF(), colorLines.greenF(), colorLines.blueF());
     glLineWidth(sizeLines);
-    glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,test.facetsArr);
-
+    glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,
+                   test.facetsArr);
   }
 }

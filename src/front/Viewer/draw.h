@@ -22,23 +22,18 @@ class draw : public QOpenGLWidget {
   void resizeGL(int w, int h);
   void paintGL();
   void displayVertices();
-void displayLines() ;
+  void displayLines();
+
   dataNur test;
   char *file_name;
-  int lastState;
-
-  int numV =0;
-  int numL=0;
-
-  int sizeH = 0;
-  int sizeW = 0;
 
   // Nurlan use next:
-  int  zoom = 0; // отношение текущего состояния масштаба к предыдущему
-  int firstOpen = 0; // было ли это открыте файла в первый раз
-  int projection = 0; // включена ли центральная проекция
-  int lastValueZ = 0; //предыдущее значение координаты по z
-  int error = 1; // наличие ошибок, изначально, до открытия файла считаем что есть
+  int zoom = 0;  // отношение текущего состояния масштаба к предыдущему
+  int firstOpen = 0;  // было ли это открыте файла в первый раз
+  int projection = 0;  // включена ли центральная проекция
+  int lastValueZ = 0;  // предыдущее значение координаты по z
+  int error =
+      1;  // наличие ошибок, изначально, до открытия файла считаем что есть
   // dont touch
 
   double translation[3];
@@ -51,15 +46,11 @@ void displayLines() ;
   int sizeVertices;
   int sizeLines;
 
-  double maxSizeAxis;
-
   QColor colorVertices;
   QColor colorLines;
   QColor colorBackground;
 
-private:
-//      dataNur test;
-//    Ui::
+ private:
 };
 
 #endif  // DRAW_H
