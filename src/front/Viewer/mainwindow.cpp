@@ -118,7 +118,7 @@ void MainWindow::on_gif_clicked() {
 }
 
 void MainWindow::on_change_x_valueChanged(int value) {  // смещение по x
-  shiftObj(&ui->openGLWidget->test, value - ui->howmuch_x->text().toDouble(),
+  shiftObj(&ui->openGLWidget->test, value -  ui->openGLWidget->translation[0],
            'x');
   ui->openGLWidget->update();
   ui->openGLWidget->translation[0] = value;  // сохранение в масив
@@ -126,7 +126,7 @@ void MainWindow::on_change_x_valueChanged(int value) {  // смещение по
 }
 
 void MainWindow::on_change_y_valueChanged(int value) {  // смещение по y
-  shiftObj(&ui->openGLWidget->test, value - ui->howmuch_y->text().toDouble(),
+  shiftObj(&ui->openGLWidget->test, value - ui->openGLWidget->translation[1],
            'y');
   ui->openGLWidget->update();
   ui->openGLWidget->translation[1] = value;  // сохранение в масив
@@ -134,7 +134,7 @@ void MainWindow::on_change_y_valueChanged(int value) {  // смещение по
 }
 
 void MainWindow::on_change_z_valueChanged(int value) {  // смещение по z
-  shiftObj(&ui->openGLWidget->test, value - ui->openGLWidget->lastValueZ, 'z');
+  shiftObj(&ui->openGLWidget->test, value - ui->openGLWidget->translation[2], 'z');
   ui->openGLWidget->translation[2] = value;  // сохранение в масив
   ui->openGLWidget->lastValueZ = value;
   ui->openGLWidget->update();
@@ -143,14 +143,14 @@ void MainWindow::on_change_z_valueChanged(int value) {  // смещение по
 void MainWindow::on_zoom_valueChanged(
     int value) {  // изменение размеров объекта
   scalingObj(&ui->openGLWidget->test,
-             (((double)value) / ui->howmuch_zoom->text().toDouble()));
+             (((double)value) / ui->openGLWidget->scale));
   ui->openGLWidget->update();
   ui->howmuch_zoom->setText(QString::number(value));
   ui->openGLWidget->scale = value;
 }
 
 void MainWindow::on_spin_x_valueChanged(int value) {  // вращение по x
-  rotateObj(&ui->openGLWidget->test, (value - ui->x_spin_is->text().toInt()),
+  rotateObj(&ui->openGLWidget->test, (value - ui->openGLWidget->rotation[0]),
             'x');
   ui->x_spin_is->setText(QString::number(value));
   ui->openGLWidget->update();
@@ -158,7 +158,7 @@ void MainWindow::on_spin_x_valueChanged(int value) {  // вращение по x
 }
 
 void MainWindow::on_spin_y_valueChanged(int value) {  // вращение по y
-  rotateObj(&ui->openGLWidget->test, (value - ui->y_spin_is->text().toInt()),
+  rotateObj(&ui->openGLWidget->test, (value - ui->openGLWidget->rotation[1]),
             'y');
   ui->y_spin_is->setText(QString::number(value));
   ui->openGLWidget->rotation[1] = value;
@@ -166,7 +166,7 @@ void MainWindow::on_spin_y_valueChanged(int value) {  // вращение по y
 }
 
 void MainWindow::on_spin_z_valueChanged(int value) {  // вращение по z
-  rotateObj(&ui->openGLWidget->test, (value - ui->z_spin_is->text().toInt()),
+  rotateObj(&ui->openGLWidget->test, (value - ui->openGLWidget->rotation[2]),
             'z');
   ui->z_spin_is->setText(QString::number(value));
   ui->openGLWidget->rotation[2] = value;
@@ -216,15 +216,53 @@ void MainWindow::start() {
 
   ui->openGLWidget->scale = settings.value("scale", 100).value<double>();
 
-  ui->openGLWidget->rotation[0] = settings.value("rotation0", 0.0).value<double>();
-  ui->openGLWidget->rotation[1] = settings.value("rotation1", 0.0).value<double>();
-  ui->openGLWidget->rotation[2] = settings.value("rotation2", 0.0).value<double>();
+  ui->openGLWidget->rotation[0] = settings.value("rotation0", 0.0).value<int>();
+  ui->openGLWidget->rotation[1] = settings.value("rotation1", 0.0).value<int>();
+  ui->openGLWidget->rotation[2] = settings.value("rotation2", 0.0).value<int>();
 
   ui->openGLWidget->translation[0] = settings.value("translation0", 0.0).value<double>();
   ui->openGLWidget->translation[1] = settings.value("translation1", 0.0).value<double>();
   ui->openGLWidget->translation[2] = settings.value("translation2", 0.0).value<double>();
 
   settings.endGroup();
+
+  ui->change_x->setValue(ui->openGLWidget->translation[0]);
+  shiftObj(&ui->openGLWidget->test, 0 -  ui->openGLWidget->translation[0],
+           'x');
+  ui->change_y->setValue(ui->openGLWidget->translation[1]);
+  shiftObj(&ui->openGLWidget->test, 0 -  ui->openGLWidget->translation[0],
+           'y');
+  ui->change_z->setValue(ui->openGLWidget->translation[2]);
+  shiftObj(&ui->openGLWidget->test, 0 -  ui->openGLWidget->translation[0],
+           'z');
+
+  ui->spin_x->setValue(ui->openGLWidget->rotation[0]);
+  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]),
+            'x');
+  ui->spin_y->setValue(ui->openGLWidget->rotation[1]);
+  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]),
+            'y');
+  ui->spin_z->setValue(ui->openGLWidget->rotation[2]);
+  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]),
+            'z');
+  ui->zoom->setValue( ui->openGLWidget->scale);
+  scalingObj(&ui->openGLWidget->test,
+             (((double)100) / ui->openGLWidget->scale));
+  if (ui->openGLWidget->projection == 1) ui->parall_type->setChecked(true);
+  else ui->central_type->setChecked(true);
+
+  if (ui->openGLWidget->typeVertices==0) ui->is_no->setChecked(true);
+  else if (ui->openGLWidget->typeVertices==1) ui->is_round->setChecked(true);
+  else ui->is_square->setChecked(true);
+
+
+  if (  ui->openGLWidget->typeLines == 1)
+  ui->dashed->setChecked(true);
+  else ui->solid->setChecked(true);
+
+
+
+
 
   ui->openGLWidget->update();
 }
