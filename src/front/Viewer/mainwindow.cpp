@@ -53,6 +53,21 @@ void MainWindow::on_name_button_clicked() {
           " Number of vertices: " +
           QString::number(ui->openGLWidget->test.count_of_vertexes / 3));
       nurlanization(&ui->openGLWidget->test);
+      shiftObj(&ui->openGLWidget->test,  (ui->openGLWidget->translation[0]),
+               'x');
+      shiftObj(&ui->openGLWidget->test,  (ui->openGLWidget->translation[1]),
+              'y');
+      shiftObj(&ui->openGLWidget->test, (ui->openGLWidget->translation[2]),
+              'z');
+      rotateObj(&ui->openGLWidget->test, ( ui->openGLWidget->rotation[0]),
+                'x');
+      rotateObj(&ui->openGLWidget->test, ( ui->openGLWidget->rotation[1]),
+                'y');
+      rotateObj(&ui->openGLWidget->test, ( ui->openGLWidget->rotation[2]),
+              'z');
+      scalingObj(&ui->openGLWidget->test,
+                 (( ui->openGLWidget->scale/(double)100)));
+
     }
   }
 }
