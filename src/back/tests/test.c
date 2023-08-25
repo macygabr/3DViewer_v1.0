@@ -7,7 +7,7 @@
 int main() {
   dataNur outputdata;
   int error = 0;
-  char *filename = "back/tests/cube.obj";
+  char *filename = "front/tests/cube.obj";
   error = readFile(filename, &outputdata);
   error = readFile(filename, &outputdata);
   error = readFile(filename, &outputdata);
