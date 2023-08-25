@@ -37,7 +37,7 @@ class draw : public QOpenGLWidget {
   // dont touch
 
   double translation[3];
-  double rotation[3];
+  int rotation[3];
   double scale;
 
   int typeVertices;
