@@ -7,7 +7,7 @@ ADD_MATH_LIB = $(WWW) -lm
 FILES = *.c
 
 TEST_FLAGS=-lcheck --coverage
-TEST_FUNC= tests/calc_test.c
+TEST_FUNC= back/tests/my_test.c
 
 OS := $(shell uname -s)
 ifeq ($(OS), Linux)
@@ -53,8 +53,8 @@ gcov_report: clean check
 	mkdir -p gcov
 	gcc $(FILES) $(TEST_FUNC) -o gcov/greport $(TEST_FLAGS)
 	./gcov/greport;
-	lcov -t "calc" -o calc.info -c -d .
-	genhtml -o ./report calc.info
+	lcov -t "Viewer" -o Viewer.info -c -d .
+	genhtml -o ./report Viewer.info
 	$(OPEN)
 	rm *.gcda *.gcno *.o *.info
 

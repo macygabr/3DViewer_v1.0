@@ -21,7 +21,6 @@ MainWindow::~MainWindow() {
         free(ui->openGLWidget->test.facetsArr);
         free(ui->openGLWidget->test.vertexesArr);
     }
-
   Quit();  // внутри точно ошибка
   delete ui;
 }
@@ -124,10 +123,10 @@ void MainWindow::on_gif_clicked() {
     GifWriter gif;
     QByteArray ba = fileName.toLocal8Bit();
     const char *c_str = ba.data();
-    GifBegin(&gif, c_str, 640, 480, 100);
+    GifBegin(&gif, c_str, 640, 480, 10);
     for (int i = 0; i < 50; ++i) {
       ui->openGLWidget->render(&painter);
-      GifWriteFrame(&gif, img.bits(), 640, 480, 100);
+      GifWriteFrame(&gif, img.bits(), 640, 480, 10);
       dieTime = QTime::currentTime().addMSecs(100);
       while (QTime::currentTime() < dieTime)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
@@ -144,17 +143,17 @@ void MainWindow::on_gif_clicked() {
 void MainWindow::on_change_x_valueChanged(int value) {  // смещение по x
   shiftObj(&ui->openGLWidget->test, value - ui->openGLWidget->translation[0],
            'x');
-  ui->openGLWidget->update();
   ui->openGLWidget->translation[0] = value;  // сохранение в масив
   ui->howmuch_x->setText(QString::number(value));
+  ui->openGLWidget->update();
 }
 
 void MainWindow::on_change_y_valueChanged(int value) {  // смещение по y
   shiftObj(&ui->openGLWidget->test, value - ui->openGLWidget->translation[1],
            'y');
-  ui->openGLWidget->update();
   ui->openGLWidget->translation[1] = value;  // сохранение в масив
   ui->howmuch_y->setText(QString::number(value));
+  ui->openGLWidget->update();
 }
 
 void MainWindow::on_change_z_valueChanged(int value) {  // смещение по z
@@ -169,17 +168,17 @@ void MainWindow::on_zoom_valueChanged(
     int value) {  // изменение размеров объекта
   scalingObj(&ui->openGLWidget->test,
              (((double)value) / ui->openGLWidget->scale));
-  ui->openGLWidget->update();
   ui->howmuch_zoom->setText(QString::number(value));
   ui->openGLWidget->scale = value;
+  ui->openGLWidget->update();
 }
 
 void MainWindow::on_spin_x_valueChanged(int value) {  // вращение по x
   rotateObj(&ui->openGLWidget->test, (value - ui->openGLWidget->rotation[0]),
             'x');
   ui->x_spin_is->setText(QString::number(value));
-  ui->openGLWidget->update();
   ui->openGLWidget->rotation[0] = value;
+  ui->openGLWidget->update();
 }
 
 void MainWindow::on_spin_y_valueChanged(int value) {  // вращение по y
