@@ -43,7 +43,7 @@ draw::draw(QWidget *parent) : QOpenGLWidget(parent)
       sizeVertices = 10.0;
       sizeLines = 1.0;
 
-      projection = 0;
+      projection = 1;
 
       maxSizeAxis = 1;
 
@@ -72,13 +72,22 @@ void draw::initializeGL(){
 }
 void draw ::resizeGL(int w, int h){
 
-
 }
 
 void draw::paintGL(){
     glClearColor(colorBackground.redF(), colorBackground.greenF(), colorBackground.blueF(), 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    if(!projection){
+        float winHeight = 0.5;
+        float winWidth = 0.5;
+        float fov = 60.0 * M_PI / 180;
+        float heapHeight = winHeight / (2 * tan(fov / 2));
+        glFrustum(-winWidth, winWidth, -winHeight, winHeight, heapHeight, 10);
+        glTranslated(0, 0, -heapHeight * 3);
+    } else glOrtho(-1, 1, -1, 1, 1, -1);
 
     glEnableVertexAttribArray(0);
     glEnableClientState(GL_VERTEX_ARRAY);

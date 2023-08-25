@@ -2,9 +2,54 @@
   dataNur outputdata;
   char *filename = "back/tests/cube.obj";
   readFile(filename,&outputdata);
-  nurlanization(&outputdata);
-  scalingObj(&outputdata, 0.1);
+  scalingObj(&outputdata, 10);
+  rotateObj(&outputdata, 90, 'y');
+
+  ck_assert_double_eq_tol(outputdata.vertexesArr[0] , 10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[1] , -10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[2] , 10,1e-7);
+
+  ck_assert_double_eq_tol(outputdata.vertexesArr[3] , -10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[4] , -10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[5] , 10,1e-7);
+
+  ck_assert_double_eq_tol(outputdata.vertexesArr[6] , -10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[7] , -10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[8] , -10,1e-7);
+
+  ck_assert_double_eq_tol(outputdata.vertexesArr[9] , 10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[10] , -10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[11] , -10,1e-7);
+
+  ck_assert_double_eq_tol(outputdata.vertexesArr[12] , 9.999990,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[13] , 10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[14] , 10,1e-7);
+
+  ck_assert_double_eq_tol(outputdata.vertexesArr[15] , -10.00001,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[16] , 10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[17] , 9.999990,1e-7);
+
+  ck_assert_double_eq_tol(outputdata.vertexesArr[18] , -10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[19] , 10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[20] , -10,1e-7);
+
+  ck_assert_double_eq_tol(outputdata.vertexesArr[21] , 10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[22] , 10,1e-7);
+  ck_assert_double_eq_tol(outputdata.vertexesArr[23] , -10,1e-7);
+
   ck_assert_double_eq_tol(outputdata.count_of_vertexes, 24,1e-7);
   ck_assert_double_eq_tol(outputdata.count_of_facets, 72,1e-7);
+  
   free(outputdata.vertexesArr);
   free(outputdata.facetsArr);
+
+#test transformations_2
+
+#test transformations_3
+
+#test transformations_4
+
+#test transformations_5
+
+#test transformations_6
+  

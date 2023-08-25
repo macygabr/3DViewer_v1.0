@@ -6,11 +6,11 @@
 
 int main() {
   dataNur outputdata;
-  char *filename =
-      "back/tests/cube.obj";
-  readFile(filename, &outputdata);
-  scalingObj(&outputdata, 1);
-  rotateObj(&outputdata,26.0,'y');
+  int error =0;
+  char *filename = "back/tests/cube.obj";
+  error = readFile(filename, &outputdata);
+  scalingObj(&outputdata, 10);
+  rotateObj(&outputdata, 90, 'y');
 
   for (int index = 0, j = 1; index < outputdata.count_of_vertexes;
        index++, j++) {
@@ -20,8 +20,7 @@ int main() {
       j = 0;
     }
   }
-  printf(
-      "polygon:__________________________________________________________\n");
+  printf("polygon:_____________________________________________\n");
   for (int index = 0, j = 1; index < outputdata.count_of_facets; index++, j++) {
     printf("%d", outputdata.facetsArr[index]);
     if (!(j % 2)) printf(" ");
@@ -31,8 +30,8 @@ int main() {
     }
   }
 
-  printf("вершины = %d\nполигоны = %d", outputdata.count_of_vertexes,
-         outputdata.count_of_facets);
+  printf("вершины = %d\nполигоны = %d\nошибок: %d", outputdata.count_of_vertexes,
+         outputdata.count_of_facets, error);
   free(outputdata.vertexesArr);
   free(outputdata.facetsArr);
   return 0;

@@ -25,20 +25,17 @@ void MainWindow::on_name_button_clicked() {
   QString fileName =
       QFileDialog::getOpenFileName(this, "Open a file", "/Users", "*.obj");
   if (fileName != "") {
+        clean();
     ui->name_display->setText(" " + fileName.split('/').last());
     char *file_way = new char(fileName.length());
     QByteArray barr = fileName.toLatin1();
     strlcpy(file_way, barr, fileName.length() + 1);
     ui->openGLWidget->file_name = file_way;
-//    readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
-//    ui->num_edges->setText(
-//        " Number of edges: " +
-//        QString::number(ui->openGLWidget->test.count_of_facets/6));
-//    ui->num_vert->setText(
-//        " Number of vertices: " +
-//        QString::number(ui->openGLWidget->test.count_of_vertexes/3));
-//    nurlanization(&ui->openGLWidget->test);
-    clean();
+    if(!readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test)){
+        ui->num_edges->setText(" Number of edges: " +QString::number(ui->openGLWidget->test.count_of_facets/6));
+        ui->num_vert->setText( " Number of vertices: "+QString::number(ui->openGLWidget->test.count_of_vertexes/3));
+        nurlanization(&ui->openGLWidget->test);
+    }
   }
 }
 
@@ -50,7 +47,8 @@ void MainWindow::clean() {
   ui->spin_y->setValue(0);
   ui->spin_z->setValue(0);
   ui->zoom->setValue(100);
-  ui->central_type->setChecked(true);
+  ui->openGLWidget->projection = 1; // включена парал. проекция
+  ui->parall_type->setChecked(true); // чекбокс включен
   ui->is_round->setChecked(true);
   ui->dashed->setChecked(true);
 }
@@ -101,47 +99,47 @@ void MainWindow::on_gif_clicked() {
   }
 }
 
-void MainWindow::on_change_y_valueChanged(int value) {
-  //    ui->openGLWidget->translation[1]=value;
-  shiftObj(&ui->openGLWidget->test, value - ui->howmuch_y->text().toDouble(),
-           'y');
+void MainWindow::on_change_x_valueChanged(int value) {// смещение по x
+  shiftObj(&ui->openGLWidget->test, value - ui->howmuch_x->text().toDouble(),'x');
   ui->openGLWidget->update();
-  ui->howmuch_y->setText(QString::number(value));
-}
-
-void MainWindow::on_change_x_valueChanged(int value) {
-  //    ui->openGLWidget->translation[0]=value;
-  shiftObj(&ui->openGLWidget->test, value - ui->howmuch_x->text().toDouble(),
-           'x');
-  ui->openGLWidget->update();
+   ui->openGLWidget->translation[0] = value; // сохранение в масив
   ui->howmuch_x->setText(QString::number(value));
 }
 
-void MainWindow::on_zoom_valueChanged(int value) {
-  scalingObj(&ui->openGLWidget->test,
-             (((double)value) / ui->howmuch_zoom->text().toDouble()));
-  //     ui->openGLWidget->scale=value/100.0;
+void MainWindow::on_change_y_valueChanged(int value) {// смещение по y
+  shiftObj(&ui->openGLWidget->test, value - ui->howmuch_y->text().toDouble(),'y');
+  ui->openGLWidget->update();
+  ui->openGLWidget->translation[1] = value; // сохранение в масив
+  ui->howmuch_y->setText(QString::number(value));
+}
+
+void MainWindow::on_change_z_valueChanged(int value) { // смещение по z
+  shiftObj(&ui->openGLWidget->test, value - ui->openGLWidget->lastValueZ,'z');
+  ui->openGLWidget->translation[2] = value; // сохранение в масив
+  ui->openGLWidget->lastValueZ = value;
+  ui->openGLWidget->update();
+}
+
+void MainWindow::on_zoom_valueChanged(int value) { // изменение размеров объекта
+  scalingObj(&ui->openGLWidget->test, (((double)value) / ui->howmuch_zoom->text().toDouble()));
   ui->openGLWidget->update();
   ui->howmuch_zoom->setText(QString::number(value));
 }
 
-void MainWindow::on_spin_x_valueChanged(int value) {
-  rotateObj(&ui->openGLWidget->test, (value - ui->x_spin_is->text().toInt()),
-            'x');
+void MainWindow::on_spin_x_valueChanged(int value) { // вращение по x
+  rotateObj(&ui->openGLWidget->test, (value - ui->x_spin_is->text().toInt()),'x');
   ui->x_spin_is->setText(QString::number(value));
   ui->openGLWidget->update();
 }
 
-void MainWindow::on_spin_y_valueChanged(int value) {
-  rotateObj(&ui->openGLWidget->test, (value - ui->y_spin_is->text().toInt()),
-            'y');
+void MainWindow::on_spin_y_valueChanged(int value) { // вращение по y
+  rotateObj(&ui->openGLWidget->test, (value - ui->y_spin_is->text().toInt()),'y');
   ui->y_spin_is->setText(QString::number(value));
   ui->openGLWidget->update();
 }
 
-void MainWindow::on_spin_z_valueChanged(int value) {
-  rotateObj(&ui->openGLWidget->test, (value - ui->z_spin_is->text().toInt()),
-            'z');
+void MainWindow::on_spin_z_valueChanged(int value) { // вращение по z
+  rotateObj(&ui->openGLWidget->test, (value - ui->z_spin_is->text().toInt()),'z');
   ui->z_spin_is->setText(QString::number(value));
   ui->openGLWidget->update();
 }
@@ -165,6 +163,7 @@ void MainWindow::on_Edges_colour_clicked() {
 }
 
 void MainWindow::start() {
+
   QString temp = QCoreApplication::applicationDirPath();
   QSettings settings(temp + "/settings.ini", QSettings::IniFormat);
 
@@ -188,16 +187,15 @@ void MainWindow::Quit() {
   settings.endGroup();
 }
 
-void MainWindow::on_change_z_valueChanged(int arg1) {
-  ui->openGLWidget->translation[2] = arg1;
-  ui->openGLWidget->update();
-}
 
-void MainWindow::on_central_type_clicked() { ui->openGLWidget->projection = 0; }
+void MainWindow::on_central_type_clicked() {
+    ui->openGLWidget->projection = 0;
+    ui->openGLWidget->update();// рендер с новой проекцией
+}
 
 void MainWindow::on_parall_type_clicked() {
   ui->openGLWidget->projection = 1;
-  ui->openGLWidget->update();
+  ui->openGLWidget->update();// рендер с новой проекцией
 }
 
 void MainWindow::on_solid_clicked() {
@@ -234,3 +232,4 @@ void MainWindow::on_size_valueChanged(int value) {
   ui->openGLWidget->sizeVertices = value;
   ui->openGLWidget->update();
 }
+

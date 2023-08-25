@@ -68,13 +68,8 @@ int shiftObj(dataNur* inputdata, double shift, char axis) {
 int nurlanization(dataNur* inputdata) {
   if (!inputdata) return 1;
   double max = inputdata->vertexesArr[0];
-  for (int i = 0; i < inputdata->count_of_vertexes; i++) {
+  for (int i = 0; i < inputdata->count_of_vertexes; i++)
     if (inputdata->vertexesArr[i] > max) max = inputdata->vertexesArr[i];
-  }
-
-  for (int i = 0; i < inputdata->count_of_vertexes; i++) {
-    inputdata->vertexesArr[i] /= max;
-    inputdata->vertexesArr[i] *= 0.5;
-  }
+  scalingObj(inputdata, 0.5/max);
   return 0;
 }

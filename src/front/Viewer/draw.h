@@ -33,9 +33,11 @@ void displayLines() ;
   int sizeH = 0;
   int sizeW = 0;
 
-  // nurlan use next:
-  int  zoom = 0;
-  int firstOpen =0;
+  // Nurlan use next:
+  int  zoom = 0; // отношение текущего состояния масштаба к предыдущему
+  int firstOpen = 0; // было ли это открыте файла в первый раз
+  int projection = 0; // включена ли центральная проекция
+  int lastValueZ = 0; //предыдущее значение координаты по z
   // dont touch
 
   double translation[3];
@@ -47,8 +49,6 @@ void displayLines() ;
 
   int sizeVertices;
   int sizeLines;
-
-  int projection;
 
   double maxSizeAxis;
 
