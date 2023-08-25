@@ -106,9 +106,11 @@ void draw::displayVertices() {
   } else if (typeVertices == 0) {
     glDisable(GL_POINT_SMOOTH);
     glEnable(GL_POINT_SPRITE);
+  } else if(typeVertices == 2){
+    glDisable(GL_POINT_SMOOTH);
   }
 
-  if (typeVertices) {
+  if (typeVertices != 0) {
     glColor3f(colorVertices.redF(), colorVertices.greenF(),colorVertices.blueF());
     glPointSize(sizeVertices);
     glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
@@ -124,7 +126,7 @@ void draw::displayLines() {
   } else {
     glDisable(GL_LINE_STIPPLE);
   }
-  if (typeLines != 0) {
+  if (typeLines <= 1) {
     glColor3f(colorLines.redF(), colorLines.greenF(), colorLines.blueF());
     glLineWidth(sizeLines);
     glDrawElements(GL_LINES, (test.count_of_facets), GL_UNSIGNED_INT,

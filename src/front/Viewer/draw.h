@@ -41,7 +41,7 @@ class draw : public QOpenGLWidget {
   double scale;
 
   int typeVertices;
-  int typeLines;
+  int typeLines = 0; // исходный тип линии (классический)
 
   int sizeVertices;
   int sizeLines;

@@ -27,7 +27,7 @@ void MainWindow::on_name_button_clicked() {
   QString fileName =
       QFileDialog::getOpenFileName(this, "Open a file", "/Users", "*.obj");
   if (fileName != "") {
-//    ui->name_display->setText(" " + fileName.split('/').last());
+    ui->name_display->setText(" " + fileName.split('/').last());
 //    char *file_way = new char(fileName.length());
 //    QByteArray barr = fileName.toLatin1();
 //    strlcpy(file_way, barr, fileName.length() + 1);
@@ -37,7 +37,7 @@ void MainWindow::on_name_button_clicked() {
      std::string str_expr = fileName.toStdString();
      char *file_way = (char *)str_expr.c_str();
      ui->openGLWidget->file_name = file_way;
-     clean();
+//     clean();
     //_____________________________________________________
     ui->openGLWidget->error = readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
     if(!ui->openGLWidget->error){
@@ -210,7 +210,7 @@ void MainWindow::start() {
 
   ui->openGLWidget->sizeVertices = settings.value("sizeVertices", 10.0).value<int>();
 
-  ui->openGLWidget->typeLines = settings.value("typeLines", 1).value<int>();
+  ui->openGLWidget->typeLines = settings.value("typeLines", 0).value<int>();
 
   ui->openGLWidget->typeVertices = settings.value("typeVertices", 1).value<int>();
 
