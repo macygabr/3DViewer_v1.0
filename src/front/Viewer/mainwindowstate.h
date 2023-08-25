@@ -1,9 +1,9 @@
-//#ifndef MAINWINDOWSTATE_H
-//#define MAINWINDOWSTATE_H
+// #ifndef MAINWINDOWSTATE_H
+// #define MAINWINDOWSTATE_H
 
-//#include <QPoint>
-//#include <QSize>
-//#include "draw.h"
+// #include <QPoint>
+// #include <QSize>
+// #include "draw.h"
 
 // class mainwindowstate
 //{
@@ -16,7 +16,7 @@
 ////    mainwindowstate();
 //};
 
-//#endif // MAINWINDOWSTATE_H
+// #endif // MAINWINDOWSTATE_H
 
 ////#ifndef MAINWINDOWSTATE_H
 ////#define MAINWINDOWSTATE_H
