@@ -13,7 +13,7 @@ extern "C" {
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
-//  start();
+  start();
 }
 
 MainWindow::~MainWindow() {
@@ -30,6 +30,7 @@ void MainWindow::on_name_button_clicked() {
   QString fileName =
       QFileDialog::getOpenFileName(this, "Open a file", "/Users", "*.obj");
   if (fileName != "") {
+      ui->openGLWidget->firstOpen =1;
     ui->name_display->setText(" " + fileName.split('/').last());
     //    char *file_way = new char(fileName.length());
     //    QByteArray barr = fileName.toLatin1();
@@ -241,20 +242,14 @@ void MainWindow::start() {
   settings.endGroup();
 
   ui->change_x->setValue(ui->openGLWidget->translation[0]);
-//  shiftObj(&ui->openGLWidget->test, 0 - ui->openGLWidget->translation[0], 'x');
   ui->change_y->setValue(ui->openGLWidget->translation[1]);
-//  shiftObj(&ui->openGLWidget->test, 0 - ui->openGLWidget->translation[0], 'y');
   ui->change_z->setValue(ui->openGLWidget->translation[2]);
-//  shiftObj(&ui->openGLWidget->test, 0 - ui->openGLWidget->translation[0], 'z');
 
   ui->spin_x->setValue(ui->openGLWidget->rotation[0]);
-//  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]), 'x');
   ui->spin_y->setValue(ui->openGLWidget->rotation[1]);
-//  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]), 'y');
   ui->spin_z->setValue(ui->openGLWidget->rotation[2]);
-//  rotateObj(&ui->openGLWidget->test, (0 - ui->openGLWidget->rotation[0]), 'z');
   ui->zoom->setValue(ui->openGLWidget->scale);
-//  scalingObj(&ui->openGLWidget->test, (((double)100) / ui->openGLWidget->scale));
+
   if (ui->openGLWidget->projection == 1)
     ui->parall_type->setChecked(true);
   else
@@ -282,21 +277,21 @@ void MainWindow::Quit() {
   settings.beginGroup("Settings");
 
   settings.setValue("colorBackground", ui->openGLWidget->colorBackground);
-//  settings.setValue("colorLines", ui->openGLWidget->colorLines);
-//  settings.setValue("colorVertices", ui->openGLWidget->colorVertices);
-//  settings.setValue("sizeLines", ui->openGLWidget->sizeLines);
-//  settings.setValue("sizeVertices", ui->openGLWidget->sizeVertices);
+  settings.setValue("colorLines", ui->openGLWidget->colorLines);
+  settings.setValue("colorVertices", ui->openGLWidget->colorVertices);
+  settings.setValue("sizeLines", ui->openGLWidget->sizeLines);
+  settings.setValue("sizeVertices", ui->openGLWidget->sizeVertices);
 
-//  settings.setValue("typeLines", ui->openGLWidget->typeLines);
-//  settings.setValue("typeVertices", ui->openGLWidget->typeVertices);
-//  settings.setValue("scale", ui->openGLWidget->scale);
+  settings.setValue("typeLines", ui->openGLWidget->typeLines);
+  settings.setValue("typeVertices", ui->openGLWidget->typeVertices);
+  settings.setValue("scale", ui->openGLWidget->scale);
 
-//  settings.setValue("rotation0", ui->openGLWidget->rotation[0]);
-//  settings.setValue("rotation1", ui->openGLWidget->rotation[1]);
-//  settings.setValue("rotation2", ui->openGLWidget->rotation[2]);
-//  settings.setValue("translation0", ui->openGLWidget->translation[0]);
-//  settings.setValue("translation1", ui->openGLWidget->translation[1]);
-//  settings.setValue("translation2", ui->openGLWidget->translation[2]);
+  settings.setValue("rotation0", ui->openGLWidget->rotation[0]);
+  settings.setValue("rotation1", ui->openGLWidget->rotation[1]);
+  settings.setValue("rotation2", ui->openGLWidget->rotation[2]);
+  settings.setValue("translation0", ui->openGLWidget->translation[0]);
+  settings.setValue("translation1", ui->openGLWidget->translation[1]);
+  settings.setValue("translation2", ui->openGLWidget->translation[2]);
 
   settings.endGroup();
 }

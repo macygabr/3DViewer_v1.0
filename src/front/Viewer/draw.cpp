@@ -56,7 +56,7 @@ void draw::paintGL() {
   glClearColor(colorBackground.redF(), colorBackground.greenF(),
                colorBackground.blueF(), 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
-
+if (firstOpen!=0){
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   if (!projection) {
@@ -77,6 +77,7 @@ void draw::paintGL() {
 
   glDisableClientState(GL_VERTEX_ARRAY);
   glDisableVertexAttribArray(0);
+}
 
   //    glEnableClientState(GL_VERTEX_ARRAY);
   //    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
