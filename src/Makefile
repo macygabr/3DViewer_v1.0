@@ -19,29 +19,31 @@ else
 	DOX =brew install doxygen
 endif
 
-all: install
+all: install gcov_report clang
 
 install:
-	$(DOX)
-	mkdir 3D_Viewer
-	cd 3D_Viewer; qmake -o ../3D_Viewer/Makefile
+	mkdir -p 3D_Viewer
+	cd front/Viewer; qmake -o ../../3D_Viewer/Makefile
 	cd 3D_Viewer; make
+
+installDox:
+	$(DOX)
 
 uninstall:
 	rm -rf 3D_Viewer
 
 open:
-	open 3D_Viewer/transformations.app
+	open 3D_Viewer/Viewer.app
 
-dist:
-	tar -czf 3D_Viewer.install.tar.gz ./* *.c *.h
+dist: install
+	tar -czf 3D_Viewer.install.tar.gz front back 3D_Viewer
 
 dvi: clean
 	doxygen Doxyfile
 	open html/index.html
 
 clean:
-	rm -rf *.a report gcov test *.gcno *.gcda html back/tests/my_test.c front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug
+	rm -rf *.a *.o report gcov test *.gcno *.gcda html $(TEST_FUNC) front/build-Viewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug
 
 transformations.a:
 	$(CC) $(CFLAGS) -c back/*.c 
@@ -51,7 +53,7 @@ transformations.a:
 
 gcov_report: clean check
 	mkdir -p gcov
-	gcc $(FILES) $(TEST_FUNC) -o gcov/greport $(TEST_FLAGS)
+	$(CC) back/*.c $(TEST_FUNC) -o gcov/greport $(TEST_FLAGS)
 	./gcov/greport;
 	lcov -t "Viewer" -o Viewer.info -c -d .
 	genhtml -o ./report Viewer.info
@@ -59,16 +61,16 @@ gcov_report: clean check
 	rm *.gcda *.gcno *.o *.info
 
 clang:
-	clang-format -style="{BasedOnStyle: Google}" -n */*.c */*.h */*/*.h */*/*.c */*/*.cpp
+	clang-format -style="{BasedOnStyle: Google}" -n back/*.c back/*.h front/Viewer/*.h front/Viewer/*.cpp back/tests/*.check
 
 goclang:
-	clang-format -style="{BasedOnStyle: Google}" -i */*.c */*.h */*/*.c */*/*.h
+	clang-format -style="{BasedOnStyle: Google}" -i back/*.c back/*.h front/Viewer/*.h front/Viewer/*.cpp back/tests/*.check
 
 check:
-	checkmk clean_mode=1 back/tests/headers.check back/tests/*.check > back/tests/my_test.c
+	checkmk clean_mode=1 back/tests/headers.check back/tests/*.check > $(TEST_FUNC)
 
 test: clean transformations.a check
-	$(CC) -std=c11  back/tests/my_test.c transformations.a -o test $(TEST_FLAGS)
+	$(CC) -std=c11  $(TEST_FUNC) transformations.a -o test $(TEST_FLAGS)
 	./test
 
 mytest: clean transformations.a

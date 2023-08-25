@@ -6,40 +6,36 @@ extern "C" {
 #include "../../back/transformations.h"
 }
 
-draw::draw(QWidget *parent) : QOpenGLWidget(parent)
-{
+draw::draw(QWidget *parent) : QOpenGLWidget(parent) {
+  rotation[0] = 0.0;
+  rotation[1] = 0.0;
+  rotation[2] = 0.0;
 
-      rotation[0] = 0.0;
-      rotation[1] = 0.0;
-      rotation[2] = 0.0;
+  translation[0] = 0.0;
+  translation[1] = 0.0;
+  translation[2] = 0.0;
 
-      translation[0] = 0.0;
-      translation[1] = 0.0;
-      translation[2] = 0.0;
+  scale = 1.0;
 
-      scale = 1.0;
+  typeVertices = 0;
+  typeLines = 1;
 
-      typeVertices = 0;
-      typeLines = 1;
+  sizeVertices = 10.0;
+  sizeLines = 1.0;
 
-      sizeVertices = 10.0;
-      sizeLines = 1.0;
+  projection = 1;
 
-      projection = 1;
+  colorVertices.setRedF(1.0f);
+  colorVertices.setGreenF(0.0f);
+  colorVertices.setBlueF(1.0f);
 
+  colorLines.setRedF(1.0f);
+  colorLines.setGreenF(1.0f);
+  colorLines.setBlueF(1.0f);
 
-      colorVertices.setRedF(1.0f);
-      colorVertices.setGreenF(0.0f);
-      colorVertices.setBlueF(1.0f);
-
-      colorLines.setRedF(1.0f);
-      colorLines.setGreenF(1.0f);
-      colorLines.setBlueF(1.0f);
-
-      colorBackground.setRedF(0.0f);
-      colorBackground.setGreenF(0.0f);
-      colorBackground.setBlueF(0.0f);
-
+  colorBackground.setRedF(0.0f);
+  colorBackground.setGreenF(0.0f);
+  colorBackground.setBlueF(0.0f);
 }
 
 draw::~draw() {}
@@ -56,28 +52,28 @@ void draw::paintGL() {
   glClearColor(colorBackground.redF(), colorBackground.greenF(),
                colorBackground.blueF(), 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
-if (firstOpen!=0){
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  if (!projection) {
-    float winHeight = 0.5;
-    float winWidth = 0.5;
-    float fov = 60.0 * M_PI / 180;
-    float heapHeight = winHeight / (2 * tan(fov / 2));
-    glFrustum(-winWidth, winWidth, -winHeight, winHeight, heapHeight, 10);
-    glTranslated(0, 0, -heapHeight * 3);
-  } else
-    glOrtho(-1, 1, -1, 1, 1, -1);
+  if (firstOpen != 0) {
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    if (!projection) {
+      float winHeight = 0.5;
+      float winWidth = 0.5;
+      float fov = 60.0 * M_PI / 180;
+      float heapHeight = winHeight / (2 * tan(fov / 2));
+      glFrustum(-winWidth, winWidth, -winHeight, winHeight, heapHeight, 10);
+      glTranslated(0, 0, -heapHeight * 3);
+    } else
+      glOrtho(-1, 1, -1, 1, 1, -1);
 
-  glEnableVertexAttribArray(0);
-  glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableVertexAttribArray(0);
+    glEnableClientState(GL_VERTEX_ARRAY);
 
-  displayVertices();
-  displayLines();
+    displayVertices();
+    displayLines();
 
-  glDisableClientState(GL_VERTEX_ARRAY);
-  glDisableVertexAttribArray(0);
-}
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableVertexAttribArray(0);
+  }
 
   //    glEnableClientState(GL_VERTEX_ARRAY);
   //    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);

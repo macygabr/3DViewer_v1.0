@@ -17,10 +17,10 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 MainWindow::~MainWindow() {
-    if(ui->openGLWidget->firstOpen){
-        free(ui->openGLWidget->test.facetsArr);
-        free(ui->openGLWidget->test.vertexesArr);
-    }
+  if (ui->openGLWidget->firstOpen) {
+    free(ui->openGLWidget->test.facetsArr);
+    free(ui->openGLWidget->test.vertexesArr);
+  }
   Quit();  // внутри точно ошибка
   delete ui;
 }
@@ -29,21 +29,16 @@ void MainWindow::on_name_button_clicked() {
   QString fileName =
       QFileDialog::getOpenFileName(this, "Open a file", "/Users", "*.obj");
   if (fileName != "") {
-      ui->openGLWidget->firstOpen =1;
+    ui->openGLWidget->firstOpen = 1;
     ui->name_display->setText(" " + fileName.split('/').last());
-    //    char *file_way = new char(fileName.length());
-    //    QByteArray barr = fileName.toLatin1();
-    //    strlcpy(file_way, barr, fileName.length() + 1);
-    //    ui->openGLWidget->file_name = file_way;
-    //_____________________________________________________
 
     std::string str_expr = fileName.toStdString();
     char *file_way = (char *)str_expr.c_str();
     ui->openGLWidget->file_name = file_way;
-    //     clean();
-    //_____________________________________________________
+
     ui->openGLWidget->error =
         readFile(ui->openGLWidget->file_name, &ui->openGLWidget->test);
+
     if (!ui->openGLWidget->error) {
       ui->num_edges->setText(
           " Number of edges: " +
@@ -52,21 +47,17 @@ void MainWindow::on_name_button_clicked() {
           " Number of vertices: " +
           QString::number(ui->openGLWidget->test.count_of_vertexes / 3));
       nurlanization(&ui->openGLWidget->test);
-      shiftObj(&ui->openGLWidget->test,  (ui->openGLWidget->translation[0]),
+      shiftObj(&ui->openGLWidget->test, (ui->openGLWidget->translation[0]),
                'x');
-      shiftObj(&ui->openGLWidget->test,  (ui->openGLWidget->translation[1]),
-              'y');
+      shiftObj(&ui->openGLWidget->test, (ui->openGLWidget->translation[1]),
+               'y');
       shiftObj(&ui->openGLWidget->test, (ui->openGLWidget->translation[2]),
-              'z');
-      rotateObj(&ui->openGLWidget->test, ( ui->openGLWidget->rotation[0]),
-                'x');
-      rotateObj(&ui->openGLWidget->test, ( ui->openGLWidget->rotation[1]),
-                'y');
-      rotateObj(&ui->openGLWidget->test, ( ui->openGLWidget->rotation[2]),
-              'z');
+               'z');
+      rotateObj(&ui->openGLWidget->test, (ui->openGLWidget->rotation[0]), 'x');
+      rotateObj(&ui->openGLWidget->test, (ui->openGLWidget->rotation[1]), 'y');
+      rotateObj(&ui->openGLWidget->test, (ui->openGLWidget->rotation[2]), 'z');
       scalingObj(&ui->openGLWidget->test,
-                 (( ui->openGLWidget->scale/(double)100)));
-
+                 ((ui->openGLWidget->scale / (double)100)));
     }
   }
 }
