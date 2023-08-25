@@ -60,6 +60,12 @@ void MainWindow::on_name_button_clicked() {
                  ((ui->openGLWidget->scale / (double)100)));
     }
   }
+  if (ui->openGLWidget->firstOpen > 1) {
+    free(ui->openGLWidget->test.facetsArr);
+    free(ui->openGLWidget->test.vertexesArr);
+  }
+  // ui->is_round->setChecked(true);
+  ui->openGLWidget->update();
 }
 
 void MainWindow::clean() {
@@ -255,14 +261,17 @@ void MainWindow::start() {
   ui->spin_z->setValue(ui->openGLWidget->rotation[2]);
   ui->zoom->setValue(ui->openGLWidget->scale);
 
+  ui->thick->setValue(ui->openGLWidget->sizeLines);
+  ui->size->setValue(ui->openGLWidget->sizeVertices);
+
   if (ui->openGLWidget->projection == 1)
     ui->parall_type->setChecked(true);
   else
     ui->central_type->setChecked(true);
 
-  if (ui->openGLWidget->typeVertices == 0)
+  if (ui->openGLWidget->typeVertices == 0) {
     ui->is_no->setChecked(true);
-  else if (ui->openGLWidget->typeVertices == 1)
+  } else if (ui->openGLWidget->typeVertices == 1)
     ui->is_round->setChecked(true);
   else
     ui->is_square->setChecked(true);

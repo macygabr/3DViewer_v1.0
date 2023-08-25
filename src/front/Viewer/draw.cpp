@@ -96,10 +96,10 @@ void draw::displayVertices() {
     glColor3f(colorVertices.redF(), colorVertices.greenF(),
               colorVertices.blueF());
     glPointSize(sizeVertices);
-    glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
     //    glVertexPointer(3, GL_DOUBLE, 0, model.vertices);
-    glDrawArrays(GL_POINTS, 0, test.count_of_vertexes / 3);
   }
+  glVertexPointer(3, GL_DOUBLE, 0, test.vertexesArr);
+  glDrawArrays(GL_POINTS, 0, test.count_of_vertexes / 3);
 }
 
 void draw::displayLines() {

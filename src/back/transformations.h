@@ -2,7 +2,7 @@
 #define SRC_BACK_S21_TRANSFORMATION_H_
 #include <stdio.h>
 
-#define S21_PI 3.14159265358979323846264338327950288 /* pi             */
+#define S21_PI 3.14159265358979323846264338327950288 /**< Число pi  */
 
 typedef struct {
   int count_of_vertexes; /**< Общее число точек */

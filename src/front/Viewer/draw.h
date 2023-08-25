@@ -18,38 +18,36 @@ class draw : public QOpenGLWidget {
  public:
   draw(QWidget *parent = Q_NULLPTR);
   ~draw();
-  void initializeGL();
-  void resizeGL(int w, int h);
-  void paintGL();
-  void displayVertices();
-  void displayLines();
+  void initializeGL();         /**< Инициализация */
+  void resizeGL(int w, int h); /**< Изменение общего масштаба */
+  void paintGL();              /**< Отрисовка окна */
+  void displayVertices(); /**< Отрисовка вершин */
+  void displayLines();    /**< Отрисовка линий */
 
-  dataNur test;
-  char *file_name;
+  dataNur test;    /**< Структура данных */
+  char *file_name; /**< Имя файла */
 
-  // Nurlan use next:
-  int zoom = 0;  // отношение текущего состояния масштаба к предыдущему
-  int firstOpen = 0;  // было ли это открыте файла в первый раз
-  int projection = 0;  // включена ли центральная проекция
-  int lastValueZ = 0;  // предыдущее значение координаты по z
+  int zoom = 0; /**<  отношение текущего состояния масштаба к предыдущему */
+  int firstOpen = 0; /**<  было ли это открыте файла в первый раз */
+  int projection = 0; /**<  включена ли центральная проекция */
+  int lastValueZ = 0; /**<  предыдущее значение координаты по z */
   int error =
-      1;  // наличие ошибок, изначально, до открытия файла считаем что есть
-  // dont touch
+      1; /**<  наличие ошибок, изначально, до открытия файла считаем что есть */
 
-  double translation[3] = {0, 0, 0};
-  int rotation[3] = {0, 0, 0};
+  double translation[3] = {0, 0, 0}; /**<  Смещение по осям */
+  int rotation[3] = {0, 0, 0};       /**<  Вращение по осям */
 
-  double scale = 100.0;
+  double scale = 100.0; /**<  Масштаб */
 
-  int typeVertices = 0;
-  int typeLines = 1;
+  int typeVertices = 0; /**<  Вид вершин */
+  int typeLines = 1;    /**<  Вид линий */
 
-  int sizeVertices = 10;
-  int sizeLines = 1;
+  int sizeVertices = 10; /**<  Размер вершин */
+  int sizeLines = 1;     /**< Размер линий */
 
-  QColor colorVertices;
-  QColor colorLines;
-  QColor colorBackground;
+  QColor colorVertices;   /**<  Цвет вершин */
+  QColor colorLines;      /**< Цвет линий */
+  QColor colorBackground; /**< Цвет фона */
 
  private:
 };

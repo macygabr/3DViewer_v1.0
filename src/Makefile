@@ -73,9 +73,7 @@ test: clean transformations.a check
 	$(CC) -std=c11  $(TEST_FUNC) transformations.a -o test $(TEST_FLAGS)
 	./test
 
-mytest: clean transformations.a
-	$(CC) -std=c11  back/tests/test.c transformations.a -o test $(TEST_FLAGS)
-	./test
+mytest: goclang clean uninstall install open
 
 valgrind: clean check transformations.a test
 	CK_FORK=no valgrind --tool=memcheck --leak-check=yes --track-origins=yes  -s ./test
